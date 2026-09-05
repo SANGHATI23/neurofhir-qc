@@ -1,0 +1,3110 @@
+{
+  "generated_utc": "2026-08-05T18:44:02Z",
+  "project": {
+    "name": "NeuroFHIR-QC",
+    "title": "Trustworthy Longitudinal Neuroimaging AI in FHIR",
+    "tagline": "Quality-scored, provenance-aware, human-reviewed longitudinal neuroimaging evidence.",
+    "environment": "Research demonstration",
+    "data_boundary": "Public de-identified research MRI linked only to synthetic FHIR R4 patient context.",
+    "repository_url": "https://github.com/SANGHATI23/neurofhir-qc",
+    "fhir_server": "https://hapi.fhir.org/baseR4",
+    "fhir_version": "4.0.1",
+    "smart_status": "SMART-compatible reviewer path; production OAuth launch is not implemented or claimed."
+  },
+  "summary_metrics": {
+    "mean_dice": 0.901412,
+    "mean_volume_error_ml": 1.312667,
+    "mean_inference_seconds": 1.780125,
+    "robustness_runs": 13,
+    "scenario_alignment": "3/3",
+    "fhir_validation": "34/34",
+    "transactions": "7/7",
+    "transaction_entries": "79/79",
+    "readback_preservation": 1.0,
+    "review_events": 4
+  },
+  "cases": [
+    {
+      "case_id": "stable",
+      "display_name": "Stable",
+      "patient": {
+        "reference": "Patient/nqc-stable-001",
+        "display": "Synthetic Patient",
+        "synthetic": true,
+        "gender": "female",
+        "birth_date": "1976-04-12"
+      },
+      "condition": {
+        "reference": "Condition/condition-stable",
+        "display": "Synthetic brain tumor or lesion context"
+      },
+      "imaging_studies": [
+        {
+          "reference": "ImagingStudy/imaging-baseline-stable",
+          "description": "Synthetic baseline brain MRI study for the NeuroFHIR-QC stable case",
+          "started": "2026-01-15T09:00:00Z",
+          "status": "available"
+        },
+        {
+          "reference": "ImagingStudy/imaging-followup-stable",
+          "description": "Synthetic followup brain MRI study for the NeuroFHIR-QC stable case",
+          "started": "2026-04-15T09:00:00Z",
+          "status": "available"
+        }
+      ],
+      "prior_observation": {
+        "reference": "Observation/prior-volume-stable",
+        "status": "final"
+      },
+      "segmentation": {
+        "dice": 0.869456,
+        "sensitivity": 0.876337,
+        "precision": 0.862682,
+        "hd95_mm": 2.828427,
+        "predicted_volume_ml": 19.189,
+        "reference_volume_ml": 18.89,
+        "absolute_volume_error_ml": 0.299,
+        "inference_seconds": 2.535313
+      },
+      "qc": {
+        "score": 0.962926,
+        "category": "High confidence",
+        "min_mask_dice": 0.987014,
+        "max_relative_volume_change": 0.021627,
+        "max_boundary_hd95_mm": 1.0,
+        "plausibility_score": 1.0,
+        "provenance_completeness_score": 1.0
+      },
+      "longitudinal": {
+        "prior_volume_ml": 18.662712,
+        "current_volume_ml": 19.189,
+        "absolute_change_ml": 0.526288,
+        "percent_change": 2.819997,
+        "display_label": "Stable by engineering display threshold",
+        "interpretation": "stable",
+        "interpretation_withheld": false,
+        "scenario_alignment_passed": true
+      },
+      "review": {
+        "events": [
+          {
+            "sequence": 1,
+            "event_id": "stable-accepted",
+            "case_id": "stable",
+            "decision": "accepted",
+            "reviewer_reference": "Practitioner/nqc-synthetic-research-reviewer",
+            "reviewer_role": "Synthetic research reviewer",
+            "reviewed_utc": "2026-08-05T05:42:26Z",
+            "reason": "High-confidence segmentation and stable longitudinal behavior were reviewed and accepted for the scripted synthetic research demonstration.",
+            "note": "Source links, model provenance, QC evidence, and the longitudinal calculation were reviewed. The result is finalized only within this synthetic demonstration.",
+            "before_observation_status": "preliminary",
+            "after_observation_status": "final",
+            "before_report_status": "preliminary",
+            "after_report_status": "final",
+            "before_task_status": "requested",
+            "after_task_status": "completed",
+            "review_provenance_reference": "Provenance/nqc-stable-review-accepted-provenance",
+            "final_event_for_case": true
+          }
+        ],
+        "final_decision": "accepted",
+        "final_observation_status": "final",
+        "final_report_status": "final",
+        "final_task_status": "completed",
+        "correction_required_preserved": false
+      },
+      "fhir": {
+        "source_context_resources": [
+          "Patient/nqc-stable-001",
+          "Condition/condition-stable",
+          "ImagingStudy/imaging-baseline-stable",
+          "ImagingStudy/imaging-followup-stable",
+          "Observation/prior-volume-stable"
+        ],
+        "generated_resources": {
+          "Observation": "Observation/nqc-stable-current-ai-volume",
+          "DiagnosticReport": "DiagnosticReport/nqc-stable-ai-imaging-report",
+          "Task": "Task/nqc-stable-human-review-task",
+          "Provenance": "Provenance/nqc-stable-ai-generation-provenance"
+        },
+        "transaction_bundle_file": "submission/fhir_resources/notebook_07/case_bundles/stable_transaction_bundle.json"
+      },
+      "images": [
+        "./assets/stable_1_stable_segmentation_evaluation.png",
+        "./assets/stable_2_stable_robustness_qc.png",
+        "./assets/stable_3_segmentation_volume_error.png"
+      ]
+    },
+    {
+      "case_id": "progression",
+      "display_name": "Progression",
+      "patient": {
+        "reference": "Patient/nqc-progression-001",
+        "display": "Synthetic Patient",
+        "synthetic": true,
+        "gender": "male",
+        "birth_date": "1969-09-24"
+      },
+      "condition": {
+        "reference": "Condition/condition-progression",
+        "display": "Synthetic brain tumor or lesion context"
+      },
+      "imaging_studies": [
+        {
+          "reference": "ImagingStudy/imaging-baseline-progression",
+          "description": "Synthetic baseline brain MRI study for the NeuroFHIR-QC progression case",
+          "started": "2026-01-20T10:30:00Z",
+          "status": "available"
+        },
+        {
+          "reference": "ImagingStudy/imaging-followup-progression",
+          "description": "Synthetic followup brain MRI study for the NeuroFHIR-QC progression case",
+          "started": "2026-04-20T10:30:00Z",
+          "status": "available"
+        }
+      ],
+      "prior_observation": {
+        "reference": "Observation/prior-volume-progression",
+        "status": "final"
+      },
+      "segmentation": {
+        "dice": 0.916905,
+        "sensitivity": 0.873887,
+        "precision": 0.964376,
+        "hd95_mm": 1.732051,
+        "predicted_volume_ml": 20.464,
+        "reference_volume_ml": 22.583,
+        "absolute_volume_error_ml": 2.119,
+        "inference_seconds": 1.40189
+      },
+      "qc": {
+        "score": 0.965043,
+        "category": "High confidence",
+        "min_mask_dice": 0.975991,
+        "max_relative_volume_change": 0.025264,
+        "max_boundary_hd95_mm": 1.0,
+        "plausibility_score": 1.0,
+        "provenance_completeness_score": 1.0
+      },
+      "longitudinal": {
+        "prior_volume_ml": 12.5,
+        "current_volume_ml": 20.464,
+        "absolute_change_ml": 7.964,
+        "percent_change": 63.712,
+        "display_label": "Meaningful volume increase by engineering display threshold",
+        "interpretation": "meaningful-increase",
+        "interpretation_withheld": false,
+        "scenario_alignment_passed": true
+      },
+      "review": {
+        "events": [
+          {
+            "sequence": 2,
+            "event_id": "progression-accepted",
+            "case_id": "progression",
+            "decision": "accepted",
+            "reviewer_reference": "Practitioner/nqc-synthetic-research-reviewer",
+            "reviewer_role": "Synthetic research reviewer",
+            "reviewed_utc": "2026-08-05T05:42:26Z",
+            "reason": "High-confidence segmentation and meaningful longitudinal increase were consistent with the executed progression evidence and were accepted for the scripted demonstration.",
+            "note": "The reviewer confirmed the source-study link, model provenance, QC result, and reported volume change.",
+            "before_observation_status": "preliminary",
+            "after_observation_status": "final",
+            "before_report_status": "preliminary",
+            "after_report_status": "final",
+            "before_task_status": "requested",
+            "after_task_status": "completed",
+            "review_provenance_reference": "Provenance/nqc-progression-review-accepted-provenance",
+            "final_event_for_case": true
+          }
+        ],
+        "final_decision": "accepted",
+        "final_observation_status": "final",
+        "final_report_status": "final",
+        "final_task_status": "completed",
+        "correction_required_preserved": false
+      },
+      "fhir": {
+        "source_context_resources": [
+          "Patient/nqc-progression-001",
+          "Condition/condition-progression",
+          "ImagingStudy/imaging-baseline-progression",
+          "ImagingStudy/imaging-followup-progression",
+          "Observation/prior-volume-progression"
+        ],
+        "generated_resources": {
+          "Observation": "Observation/nqc-progression-current-ai-volume",
+          "DiagnosticReport": "DiagnosticReport/nqc-progression-ai-imaging-report",
+          "Task": "Task/nqc-progression-human-review-task",
+          "Provenance": "Provenance/nqc-progression-ai-generation-provenance"
+        },
+        "transaction_bundle_file": "submission/fhir_resources/notebook_07/case_bundles/progression_transaction_bundle.json"
+      },
+      "images": [
+        "./assets/progression_1_progression_segmentation_evaluation.png",
+        "./assets/progression_2_progression_robustness_qc.png",
+        "./assets/progression_3_segmentation_volume_error.png"
+      ]
+    },
+    {
+      "case_id": "low-confidence",
+      "display_name": "Low Confidence",
+      "patient": {
+        "reference": "Patient/nqc-low-confidence-001",
+        "display": "Synthetic Patient",
+        "synthetic": true,
+        "gender": "female",
+        "birth_date": "1982-02-08"
+      },
+      "condition": {
+        "reference": "Condition/condition-low-confidence",
+        "display": "Synthetic brain tumor or lesion context"
+      },
+      "imaging_studies": [
+        {
+          "reference": "ImagingStudy/imaging-baseline-low-confidence",
+          "description": "Synthetic baseline brain MRI study for the NeuroFHIR-QC low-confidence case",
+          "started": "2026-01-25T14:00:00Z",
+          "status": "available"
+        },
+        {
+          "reference": "ImagingStudy/imaging-followup-low-confidence",
+          "description": "Synthetic followup brain MRI study for the NeuroFHIR-QC low-confidence case",
+          "started": "2026-04-25T14:00:00Z",
+          "status": "available"
+        }
+      ],
+      "prior_observation": {
+        "reference": "Observation/prior-volume-low-confidence",
+        "status": "final"
+      },
+      "segmentation": {
+        "dice": 0.917876,
+        "sensitivity": 0.886144,
+        "precision": 0.951964,
+        "hd95_mm": 1.732051,
+        "predicted_volume_ml": 20.464,
+        "reference_volume_ml": 21.984,
+        "absolute_volume_error_ml": 1.52,
+        "inference_seconds": 1.403173
+      },
+      "qc": {
+        "score": 0.33948,
+        "category": "Manual review required",
+        "min_mask_dice": 0.0,
+        "max_relative_volume_change": 0.920543,
+        "max_boundary_hd95_mm": 68.62434,
+        "plausibility_score": 1.0,
+        "provenance_completeness_score": 1.0
+      },
+      "longitudinal": {
+        "prior_volume_ml": 16.1,
+        "current_volume_ml": 1.626,
+        "absolute_change_ml": -14.474,
+        "percent_change": -89.900621,
+        "display_label": "Longitudinal interpretation withheld — manual review required",
+        "interpretation": "withheld-pending-human-review",
+        "interpretation_withheld": true,
+        "scenario_alignment_passed": true
+      },
+      "review": {
+        "events": [
+          {
+            "sequence": 3,
+            "event_id": "low-confidence-correction-required",
+            "case_id": "low-confidence",
+            "decision": "correction-required",
+            "reviewer_reference": "Practitioner/nqc-synthetic-research-reviewer",
+            "reviewer_role": "Synthetic research reviewer",
+            "reviewed_utc": "2026-08-05T05:42:26Z",
+            "reason": "Severe perturbation instability, a manual-review-required QC category, and withheld longitudinal interpretation require segmentation correction or reprocessing.",
+            "note": "The original AI output remains preliminary and traceable. No corrected result has been supplied in this scripted step.",
+            "before_observation_status": "preliminary",
+            "after_observation_status": "preliminary",
+            "before_report_status": "preliminary",
+            "after_report_status": "preliminary",
+            "before_task_status": "requested",
+            "after_task_status": "on-hold",
+            "review_provenance_reference": "Provenance/nqc-low-confidence-review-correction-required-provenance",
+            "final_event_for_case": false
+          },
+          {
+            "sequence": 4,
+            "event_id": "low-confidence-rejected",
+            "case_id": "low-confidence",
+            "decision": "rejected",
+            "reviewer_reference": "Practitioner/nqc-synthetic-research-reviewer",
+            "reviewer_role": "Synthetic research reviewer",
+            "reviewed_utc": "2026-08-05T05:42:26Z",
+            "reason": "The original unstable AI output is rejected after the correction-required branch because no corrected output was introduced into this scripted demonstration.",
+            "note": "The rejected result is retained for audit and marked entered-in-error. It is never presented as a final result.",
+            "before_observation_status": "preliminary",
+            "after_observation_status": "entered-in-error",
+            "before_report_status": "preliminary",
+            "after_report_status": "entered-in-error",
+            "before_task_status": "on-hold",
+            "after_task_status": "rejected",
+            "review_provenance_reference": "Provenance/nqc-low-confidence-review-rejected-provenance",
+            "final_event_for_case": true
+          }
+        ],
+        "final_decision": "rejected",
+        "final_observation_status": "entered-in-error",
+        "final_report_status": "entered-in-error",
+        "final_task_status": "rejected",
+        "correction_required_preserved": true
+      },
+      "fhir": {
+        "source_context_resources": [
+          "Patient/nqc-low-confidence-001",
+          "Condition/condition-low-confidence",
+          "ImagingStudy/imaging-baseline-low-confidence",
+          "ImagingStudy/imaging-followup-low-confidence",
+          "Observation/prior-volume-low-confidence"
+        ],
+        "generated_resources": {
+          "Observation": "Observation/nqc-low-confidence-current-ai-volume",
+          "DiagnosticReport": "DiagnosticReport/nqc-low-confidence-ai-imaging-report",
+          "Task": "Task/nqc-low-confidence-human-review-task",
+          "Provenance": "Provenance/nqc-low-confidence-ai-generation-provenance"
+        },
+        "transaction_bundle_file": "submission/fhir_resources/notebook_07/case_bundles/low-confidence_transaction_bundle.json"
+      },
+      "images": [
+        "./assets/low-confidence_1_low-confidence_segmentation_evaluation.png",
+        "./assets/low-confidence_2_low-confidence_robustness_qc.png",
+        "./assets/low-confidence_3_segmentation_volume_error.png"
+      ]
+    }
+  ],
+  "representative_fhir_resources": {
+    "Observation/nqc-stable-current-ai-volume": {
+      "resourceType": "Observation",
+      "id": "nqc-stable-current-ai-volume",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "final",
+            "display": "Final"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/observation",
+          "value": "nqc-stable-current-ai-volume"
+        }
+      ],
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "imaging",
+              "display": "Imaging"
+            }
+          ],
+          "text": "Imaging"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "whole-brain-tumor-volume",
+            "display": "AI-derived whole-tumor volume"
+          }
+        ],
+        "text": "AI-derived whole-tumor volume"
+      },
+      "subject": {
+        "reference": "Patient/nqc-stable-001"
+      },
+      "focus": [
+        {
+          "reference": "Condition/condition-stable"
+        }
+      ],
+      "effectiveDateTime": "2026-04-15T09:00:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "device": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "valueQuantity": {
+        "value": 19.189,
+        "unit": "mL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mL"
+      },
+      "bodySite": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "brain-tumor-or-lesion",
+            "display": "Brain tumor or lesion"
+          }
+        ],
+        "text": "Brain tumor or lesion"
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/measurement-method",
+            "code": "monai-segresnet-with-neurofhir-qc",
+            "display": "MONAI SegResNet with NeuroFHIR-QC processing"
+          }
+        ],
+        "text": "MONAI SegResNet with NeuroFHIR-QC processing"
+      },
+      "derivedFrom": [
+        {
+          "reference": "ImagingStudy/imaging-followup-stable"
+        },
+        {
+          "reference": "Observation/prior-volume-stable"
+        }
+      ],
+      "component": [
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "prior-reviewed-volume",
+                "display": "Prior reviewed tumor volume"
+              }
+            ],
+            "text": "Prior reviewed tumor volume"
+          },
+          "valueQuantity": {
+            "value": 18.662712,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "absolute-volume-change",
+                "display": "Absolute tumor-volume change"
+              }
+            ],
+            "text": "Absolute tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": 0.526288,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "percentage-volume-change",
+                "display": "Percentage tumor-volume change"
+              }
+            ],
+            "text": "Percentage tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": 2.819997,
+            "unit": "%",
+            "system": "http://unitsofmeasure.org",
+            "code": "%"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueQuantity": {
+            "value": 0.962926,
+            "unit": "score",
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "score"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "high-confidence",
+                "display": "High confidence"
+              }
+            ],
+            "text": "High confidence"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-display-category",
+                "display": "Longitudinal display category"
+              }
+            ],
+            "text": "Longitudinal display category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "stable",
+                "display": "Stable by engineering display threshold"
+              }
+            ],
+            "text": "Stable by engineering display threshold"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "synthetic-challenge-output",
+                "display": "Synthetic challenge output"
+              }
+            ],
+            "text": "Synthetic challenge output"
+          },
+          "valueBoolean": false
+        }
+      ],
+      "note": [
+        {
+          "text": "Synthetic longitudinal workflow evidence only. The public image is not claimed to be a real follow-up scan from the synthetic patient. The measurement and QC thresholds are engineering demonstration parameters, not validated clinical response criteria. This result must remain preliminary until explicit human review."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Human-review decision: accepted. Reason: High-confidence segmentation and stable longitudinal behavior were reviewed and accepted for the scripted synthetic research demonstration. Note: Source links, model provenance, QC evidence, and the longitudinal calculation were reviewed. The result is finalized only within this synthetic demonstration."
+        }
+      ]
+    },
+    "DiagnosticReport/nqc-stable-ai-imaging-report": {
+      "resourceType": "DiagnosticReport",
+      "id": "nqc-stable-ai-imaging-report",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "final",
+            "display": "Final"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/diagnosticreport",
+          "value": "nqc-stable-ai-imaging-report"
+        }
+      ],
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+              "code": "RAD",
+              "display": "Radiology"
+            }
+          ],
+          "text": "Radiology"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "ai-assisted-neuroimaging-volumetry-report",
+            "display": "AI-assisted neuroimaging volumetry report"
+          }
+        ],
+        "text": "AI-assisted neuroimaging volumetry report"
+      },
+      "subject": {
+        "reference": "Patient/nqc-stable-001"
+      },
+      "effectiveDateTime": "2026-04-15T09:00:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "imagingStudy": [
+        {
+          "reference": "ImagingStudy/imaging-followup-stable"
+        }
+      ],
+      "result": [
+        {
+          "reference": "Observation/nqc-stable-current-ai-volume"
+        }
+      ],
+      "conclusion": "Stable by engineering display threshold. Engineering QC category: High confidence. AI-assisted research result remains preliminary and requires explicit human review. Human-review decision: accepted. Source links, model provenance, QC evidence, and the longitudinal calculation were reviewed. The result is finalized only within this synthetic demonstration.",
+      "conclusionCode": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+              "code": "stable",
+              "display": "Stable by engineering display threshold"
+            }
+          ],
+          "text": "Stable by engineering display threshold"
+        }
+      ],
+      "resultsInterpreter": [
+        {
+          "reference": "Practitioner/nqc-synthetic-research-reviewer"
+        }
+      ]
+    },
+    "Task/nqc-stable-human-review-task": {
+      "resourceType": "Task",
+      "id": "nqc-stable-human-review-task",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "completed",
+            "display": "Completed"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/task",
+          "value": "nqc-stable-human-review-task"
+        }
+      ],
+      "status": "completed",
+      "intent": "order",
+      "priority": "routine",
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "review-ai-derived-neuroimaging-result",
+            "display": "Review AI-derived neuroimaging result"
+          }
+        ],
+        "text": "Review AI-derived neuroimaging result"
+      },
+      "description": "Inspect the AI-derived measurement and choose an explicit review outcome.",
+      "focus": {
+        "reference": "Observation/nqc-stable-current-ai-volume"
+      },
+      "for": {
+        "reference": "Patient/nqc-stable-001"
+      },
+      "authoredOn": "2026-08-05T05:23:59Z",
+      "lastModified": "2026-08-05T05:42:26Z",
+      "requester": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "reasonCode": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "high-confidence",
+            "display": "High confidence"
+          }
+        ],
+        "text": "High confidence"
+      },
+      "input": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueDecimal": 0.962926
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueString": "High confidence"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-interpretation",
+                "display": "Longitudinal interpretation"
+              }
+            ],
+            "text": "Longitudinal interpretation"
+          },
+          "valueString": "stable"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "selected-mask-artifact",
+                "display": "Selected segmentation-mask artifact"
+              }
+            ],
+            "text": "Selected segmentation-mask artifact"
+          },
+          "valueString": "data/sample_masks/notebook_04/stable/whole_tumor_binary.nii.gz"
+        }
+      ],
+      "note": [
+        {
+          "time": "2026-08-05T05:23:59Z",
+          "text": "No reviewer has acted yet. Notebook 08 must record acceptance, rejection, or correction-required with reviewer role, reason, note, and provenance."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Review decision: accepted. Reason: High-confidence segmentation and stable longitudinal behavior were reviewed and accepted for the scripted synthetic research demonstration. Note: Source links, model provenance, QC evidence, and the longitudinal calculation were reviewed. The result is finalized only within this synthetic demonstration."
+        }
+      ],
+      "businessStatus": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+            "code": "accepted",
+            "display": "Accepted"
+          }
+        ],
+        "text": "Accepted"
+      },
+      "owner": {
+        "reference": "Practitioner/nqc-synthetic-research-reviewer"
+      },
+      "executionPeriod": {
+        "start": "2026-08-05T05:23:59Z",
+        "end": "2026-08-05T05:42:26Z"
+      },
+      "output": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-decision",
+                "display": "Review decision"
+              }
+            ],
+            "text": "Review decision"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "accepted",
+                "display": "Accepted"
+              }
+            ],
+            "text": "Accepted"
+          }
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "reviewer-role",
+                "display": "Reviewer role"
+              }
+            ],
+            "text": "Reviewer role"
+          },
+          "valueString": "Synthetic research reviewer"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-reason",
+                "display": "Review reason"
+              }
+            ],
+            "text": "Review reason"
+          },
+          "valueString": "High-confidence segmentation and stable longitudinal behavior were reviewed and accepted for the scripted synthetic research demonstration."
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-note",
+                "display": "Review note"
+              }
+            ],
+            "text": "Review note"
+          },
+          "valueString": "Source links, model provenance, QC evidence, and the longitudinal calculation were reviewed. The result is finalized only within this synthetic demonstration."
+        }
+      ]
+    },
+    "Provenance/nqc-stable-ai-generation-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-stable-ai-generation-provenance",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "algorithmic-generation",
+            "display": "Algorithmic Generation"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-not-yet-performed",
+            "display": "Review Not Yet Performed"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-stable-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-stable-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-stable-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:23:59Z",
+      "recorded": "2026-08-05T05:23:59Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+              "code": "generate-reviewable-neuroimaging-evidence",
+              "display": "Generate reviewable neuroimaging evidence"
+            }
+          ],
+          "text": "Generate reviewable neuroimaging evidence"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+            "code": "ai-assisted-generation",
+            "display": "AI-assisted evidence generation"
+          }
+        ],
+        "text": "AI-assisted evidence generation"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "author",
+                "display": "Author"
+              }
+            ],
+            "text": "Author"
+          },
+          "who": {
+            "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "source",
+          "what": {
+            "reference": "ImagingStudy/imaging-followup-stable"
+          }
+        },
+        {
+          "role": "source",
+          "what": {
+            "reference": "Observation/prior-volume-stable"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/synthetic-fhir-public-imaging-only"
+      ]
+    },
+    "Observation/nqc-progression-current-ai-volume": {
+      "resourceType": "Observation",
+      "id": "nqc-progression-current-ai-volume",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "final",
+            "display": "Final"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/observation",
+          "value": "nqc-progression-current-ai-volume"
+        }
+      ],
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "imaging",
+              "display": "Imaging"
+            }
+          ],
+          "text": "Imaging"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "whole-brain-tumor-volume",
+            "display": "AI-derived whole-tumor volume"
+          }
+        ],
+        "text": "AI-derived whole-tumor volume"
+      },
+      "subject": {
+        "reference": "Patient/nqc-progression-001"
+      },
+      "focus": [
+        {
+          "reference": "Condition/condition-progression"
+        }
+      ],
+      "effectiveDateTime": "2026-04-20T10:30:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "device": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "valueQuantity": {
+        "value": 20.464,
+        "unit": "mL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mL"
+      },
+      "bodySite": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "brain-tumor-or-lesion",
+            "display": "Brain tumor or lesion"
+          }
+        ],
+        "text": "Brain tumor or lesion"
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/measurement-method",
+            "code": "monai-segresnet-with-neurofhir-qc",
+            "display": "MONAI SegResNet with NeuroFHIR-QC processing"
+          }
+        ],
+        "text": "MONAI SegResNet with NeuroFHIR-QC processing"
+      },
+      "derivedFrom": [
+        {
+          "reference": "ImagingStudy/imaging-followup-progression"
+        },
+        {
+          "reference": "Observation/prior-volume-progression"
+        }
+      ],
+      "component": [
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "prior-reviewed-volume",
+                "display": "Prior reviewed tumor volume"
+              }
+            ],
+            "text": "Prior reviewed tumor volume"
+          },
+          "valueQuantity": {
+            "value": 12.5,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "absolute-volume-change",
+                "display": "Absolute tumor-volume change"
+              }
+            ],
+            "text": "Absolute tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": 7.964,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "percentage-volume-change",
+                "display": "Percentage tumor-volume change"
+              }
+            ],
+            "text": "Percentage tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": 63.712,
+            "unit": "%",
+            "system": "http://unitsofmeasure.org",
+            "code": "%"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueQuantity": {
+            "value": 0.965043,
+            "unit": "score",
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "score"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "high-confidence",
+                "display": "High confidence"
+              }
+            ],
+            "text": "High confidence"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-display-category",
+                "display": "Longitudinal display category"
+              }
+            ],
+            "text": "Longitudinal display category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "meaningful-increase",
+                "display": "Meaningful volume increase by engineering display threshold"
+              }
+            ],
+            "text": "Meaningful volume increase by engineering display threshold"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "synthetic-challenge-output",
+                "display": "Synthetic challenge output"
+              }
+            ],
+            "text": "Synthetic challenge output"
+          },
+          "valueBoolean": false
+        }
+      ],
+      "note": [
+        {
+          "text": "Synthetic longitudinal workflow evidence only. The public image is not claimed to be a real follow-up scan from the synthetic patient. The measurement and QC thresholds are engineering demonstration parameters, not validated clinical response criteria. This result must remain preliminary until explicit human review."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Human-review decision: accepted. Reason: High-confidence segmentation and meaningful longitudinal increase were consistent with the executed progression evidence and were accepted for the scripted demonstration. Note: The reviewer confirmed the source-study link, model provenance, QC result, and reported volume change."
+        }
+      ]
+    },
+    "DiagnosticReport/nqc-progression-ai-imaging-report": {
+      "resourceType": "DiagnosticReport",
+      "id": "nqc-progression-ai-imaging-report",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "final",
+            "display": "Final"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/diagnosticreport",
+          "value": "nqc-progression-ai-imaging-report"
+        }
+      ],
+      "status": "final",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+              "code": "RAD",
+              "display": "Radiology"
+            }
+          ],
+          "text": "Radiology"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "ai-assisted-neuroimaging-volumetry-report",
+            "display": "AI-assisted neuroimaging volumetry report"
+          }
+        ],
+        "text": "AI-assisted neuroimaging volumetry report"
+      },
+      "subject": {
+        "reference": "Patient/nqc-progression-001"
+      },
+      "effectiveDateTime": "2026-04-20T10:30:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "imagingStudy": [
+        {
+          "reference": "ImagingStudy/imaging-followup-progression"
+        }
+      ],
+      "result": [
+        {
+          "reference": "Observation/nqc-progression-current-ai-volume"
+        }
+      ],
+      "conclusion": "Meaningful volume increase by engineering display threshold. Engineering QC category: High confidence. AI-assisted research result remains preliminary and requires explicit human review. Human-review decision: accepted. The reviewer confirmed the source-study link, model provenance, QC result, and reported volume change.",
+      "conclusionCode": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+              "code": "meaningful-increase",
+              "display": "Meaningful volume increase by engineering display threshold"
+            }
+          ],
+          "text": "Meaningful volume increase by engineering display threshold"
+        }
+      ],
+      "resultsInterpreter": [
+        {
+          "reference": "Practitioner/nqc-synthetic-research-reviewer"
+        }
+      ]
+    },
+    "Task/nqc-progression-human-review-task": {
+      "resourceType": "Task",
+      "id": "nqc-progression-human-review-task",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "completed",
+            "display": "Completed"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/task",
+          "value": "nqc-progression-human-review-task"
+        }
+      ],
+      "status": "completed",
+      "intent": "order",
+      "priority": "routine",
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "review-ai-derived-neuroimaging-result",
+            "display": "Review AI-derived neuroimaging result"
+          }
+        ],
+        "text": "Review AI-derived neuroimaging result"
+      },
+      "description": "Inspect the AI-derived measurement and choose an explicit review outcome.",
+      "focus": {
+        "reference": "Observation/nqc-progression-current-ai-volume"
+      },
+      "for": {
+        "reference": "Patient/nqc-progression-001"
+      },
+      "authoredOn": "2026-08-05T05:23:59Z",
+      "lastModified": "2026-08-05T05:42:26Z",
+      "requester": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "reasonCode": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "high-confidence",
+            "display": "High confidence"
+          }
+        ],
+        "text": "High confidence"
+      },
+      "input": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueDecimal": 0.965043
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueString": "High confidence"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-interpretation",
+                "display": "Longitudinal interpretation"
+              }
+            ],
+            "text": "Longitudinal interpretation"
+          },
+          "valueString": "meaningful-increase"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "selected-mask-artifact",
+                "display": "Selected segmentation-mask artifact"
+              }
+            ],
+            "text": "Selected segmentation-mask artifact"
+          },
+          "valueString": "data/sample_masks/notebook_04/progression/whole_tumor_binary.nii.gz"
+        }
+      ],
+      "note": [
+        {
+          "time": "2026-08-05T05:23:59Z",
+          "text": "No reviewer has acted yet. Notebook 08 must record acceptance, rejection, or correction-required with reviewer role, reason, note, and provenance."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Review decision: accepted. Reason: High-confidence segmentation and meaningful longitudinal increase were consistent with the executed progression evidence and were accepted for the scripted demonstration. Note: The reviewer confirmed the source-study link, model provenance, QC result, and reported volume change."
+        }
+      ],
+      "businessStatus": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+            "code": "accepted",
+            "display": "Accepted"
+          }
+        ],
+        "text": "Accepted"
+      },
+      "owner": {
+        "reference": "Practitioner/nqc-synthetic-research-reviewer"
+      },
+      "executionPeriod": {
+        "start": "2026-08-05T05:23:59Z",
+        "end": "2026-08-05T05:42:26Z"
+      },
+      "output": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-decision",
+                "display": "Review decision"
+              }
+            ],
+            "text": "Review decision"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "accepted",
+                "display": "Accepted"
+              }
+            ],
+            "text": "Accepted"
+          }
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "reviewer-role",
+                "display": "Reviewer role"
+              }
+            ],
+            "text": "Reviewer role"
+          },
+          "valueString": "Synthetic research reviewer"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-reason",
+                "display": "Review reason"
+              }
+            ],
+            "text": "Review reason"
+          },
+          "valueString": "High-confidence segmentation and meaningful longitudinal increase were consistent with the executed progression evidence and were accepted for the scripted demonstration."
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-note",
+                "display": "Review note"
+              }
+            ],
+            "text": "Review note"
+          },
+          "valueString": "The reviewer confirmed the source-study link, model provenance, QC result, and reported volume change."
+        }
+      ]
+    },
+    "Provenance/nqc-progression-ai-generation-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-progression-ai-generation-provenance",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "algorithmic-generation",
+            "display": "Algorithmic Generation"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-not-yet-performed",
+            "display": "Review Not Yet Performed"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-progression-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-progression-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-progression-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:23:59Z",
+      "recorded": "2026-08-05T05:23:59Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+              "code": "generate-reviewable-neuroimaging-evidence",
+              "display": "Generate reviewable neuroimaging evidence"
+            }
+          ],
+          "text": "Generate reviewable neuroimaging evidence"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+            "code": "ai-assisted-generation",
+            "display": "AI-assisted evidence generation"
+          }
+        ],
+        "text": "AI-assisted evidence generation"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "author",
+                "display": "Author"
+              }
+            ],
+            "text": "Author"
+          },
+          "who": {
+            "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "source",
+          "what": {
+            "reference": "ImagingStudy/imaging-followup-progression"
+          }
+        },
+        {
+          "role": "source",
+          "what": {
+            "reference": "Observation/prior-volume-progression"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/synthetic-fhir-public-imaging-only"
+      ]
+    },
+    "Observation/nqc-low-confidence-current-ai-volume": {
+      "resourceType": "Observation",
+      "id": "nqc-low-confidence-current-ai-volume",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-correction-required",
+            "display": "Review Correction Required"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-rejected",
+            "display": "Review Rejected"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "entered-in-error",
+            "display": "Entered In Error"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/observation",
+          "value": "nqc-low-confidence-current-ai-volume"
+        }
+      ],
+      "status": "entered-in-error",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+              "code": "imaging",
+              "display": "Imaging"
+            }
+          ],
+          "text": "Imaging"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "whole-brain-tumor-volume",
+            "display": "AI-derived whole-tumor volume"
+          }
+        ],
+        "text": "AI-derived whole-tumor volume"
+      },
+      "subject": {
+        "reference": "Patient/nqc-low-confidence-001"
+      },
+      "focus": [
+        {
+          "reference": "Condition/condition-low-confidence"
+        }
+      ],
+      "effectiveDateTime": "2026-04-25T14:00:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "device": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "valueQuantity": {
+        "value": 1.626,
+        "unit": "mL",
+        "system": "http://unitsofmeasure.org",
+        "code": "mL"
+      },
+      "bodySite": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "brain-tumor-or-lesion",
+            "display": "Brain tumor or lesion"
+          }
+        ],
+        "text": "Brain tumor or lesion"
+      },
+      "method": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/measurement-method",
+            "code": "monai-segresnet-with-neurofhir-qc",
+            "display": "MONAI SegResNet with NeuroFHIR-QC processing"
+          }
+        ],
+        "text": "MONAI SegResNet with NeuroFHIR-QC processing"
+      },
+      "derivedFrom": [
+        {
+          "reference": "ImagingStudy/imaging-followup-low-confidence"
+        },
+        {
+          "reference": "Observation/prior-volume-low-confidence"
+        }
+      ],
+      "component": [
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "prior-reviewed-volume",
+                "display": "Prior reviewed tumor volume"
+              }
+            ],
+            "text": "Prior reviewed tumor volume"
+          },
+          "valueQuantity": {
+            "value": 16.1,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "absolute-volume-change",
+                "display": "Absolute tumor-volume change"
+              }
+            ],
+            "text": "Absolute tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": -14.474,
+            "unit": "mL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mL"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "percentage-volume-change",
+                "display": "Percentage tumor-volume change"
+              }
+            ],
+            "text": "Percentage tumor-volume change"
+          },
+          "valueQuantity": {
+            "value": -89.900621,
+            "unit": "%",
+            "system": "http://unitsofmeasure.org",
+            "code": "%"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueQuantity": {
+            "value": 0.33948,
+            "unit": "score",
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "score"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "manual-review-required",
+                "display": "Manual review required"
+              }
+            ],
+            "text": "Manual review required"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-display-category",
+                "display": "Longitudinal display category"
+              }
+            ],
+            "text": "Longitudinal display category"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "withheld-pending-human-review",
+                "display": "Longitudinal interpretation withheld — manual review required"
+              }
+            ],
+            "text": "Longitudinal interpretation withheld — manual review required"
+          }
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "code": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "synthetic-challenge-output",
+                "display": "Synthetic challenge output"
+              }
+            ],
+            "text": "Synthetic challenge output"
+          },
+          "valueBoolean": true
+        }
+      ],
+      "note": [
+        {
+          "text": "Synthetic longitudinal workflow evidence only. The public image is not claimed to be a real follow-up scan from the synthetic patient. The measurement and QC thresholds are engineering demonstration parameters, not validated clinical response criteria. This result must remain preliminary until explicit human review."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Human-review decision: correction-required. Reason: Severe perturbation instability, a manual-review-required QC category, and withheld longitudinal interpretation require segmentation correction or reprocessing. Note: The original AI output remains preliminary and traceable. No corrected result has been supplied in this scripted step."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Human-review decision: rejected. Reason: The original unstable AI output is rejected after the correction-required branch because no corrected output was introduced into this scripted demonstration. Note: The rejected result is retained for audit and marked entered-in-error. It is never presented as a final result."
+        }
+      ]
+    },
+    "DiagnosticReport/nqc-low-confidence-ai-imaging-report": {
+      "resourceType": "DiagnosticReport",
+      "id": "nqc-low-confidence-ai-imaging-report",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "ai-generated",
+            "display": "Ai Generated"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-correction-required",
+            "display": "Review Correction Required"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-rejected",
+            "display": "Review Rejected"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "entered-in-error",
+            "display": "Entered In Error"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/diagnosticreport",
+          "value": "nqc-low-confidence-ai-imaging-report"
+        }
+      ],
+      "status": "entered-in-error",
+      "category": [
+        {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+              "code": "RAD",
+              "display": "Radiology"
+            }
+          ],
+          "text": "Radiology"
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "ai-assisted-neuroimaging-volumetry-report",
+            "display": "AI-assisted neuroimaging volumetry report"
+          }
+        ],
+        "text": "AI-assisted neuroimaging volumetry report"
+      },
+      "subject": {
+        "reference": "Patient/nqc-low-confidence-001"
+      },
+      "effectiveDateTime": "2026-04-25T14:00:00Z",
+      "issued": "2026-08-05T05:42:26Z",
+      "imagingStudy": [
+        {
+          "reference": "ImagingStudy/imaging-followup-low-confidence"
+        }
+      ],
+      "result": [
+        {
+          "reference": "Observation/nqc-low-confidence-current-ai-volume"
+        }
+      ],
+      "conclusion": "Longitudinal interpretation withheld — manual review required. Engineering QC category: Manual review required. AI-assisted research result remains preliminary and requires explicit human review. Human-review decision: correction-required. The original AI output remains preliminary and traceable. No corrected result has been supplied in this scripted step. Human-review decision: rejected. The rejected result is retained for audit and marked entered-in-error. It is never presented as a final result.",
+      "conclusionCode": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+              "code": "withheld-pending-human-review",
+              "display": "Longitudinal interpretation withheld — manual review required"
+            }
+          ],
+          "text": "Longitudinal interpretation withheld — manual review required"
+        }
+      ],
+      "resultsInterpreter": [
+        {
+          "reference": "Practitioner/nqc-synthetic-research-reviewer"
+        }
+      ]
+    },
+    "Task/nqc-low-confidence-human-review-task": {
+      "resourceType": "Task",
+      "id": "nqc-low-confidence-human-review-task",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-reviewed",
+            "display": "Human Reviewed"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-correction-required",
+            "display": "Review Correction Required"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "on-hold",
+            "display": "On Hold"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-rejected",
+            "display": "Review Rejected"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "rejected",
+            "display": "Rejected"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/task",
+          "value": "nqc-low-confidence-human-review-task"
+        }
+      ],
+      "status": "rejected",
+      "intent": "order",
+      "priority": "urgent",
+      "code": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "review-ai-derived-neuroimaging-result",
+            "display": "Review AI-derived neuroimaging result"
+          }
+        ],
+        "text": "Review AI-derived neuroimaging result"
+      },
+      "description": "Inspect the unstable segmentation and choose reject or correction-required.",
+      "focus": {
+        "reference": "Observation/nqc-low-confidence-current-ai-volume"
+      },
+      "for": {
+        "reference": "Patient/nqc-low-confidence-001"
+      },
+      "authoredOn": "2026-08-05T05:23:59Z",
+      "lastModified": "2026-08-05T05:42:26Z",
+      "requester": {
+        "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+      },
+      "reasonCode": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+            "code": "manual-review-required",
+            "display": "Manual review required"
+          }
+        ],
+        "text": "Manual review required"
+      },
+      "input": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-score",
+                "display": "Engineering QC score"
+              }
+            ],
+            "text": "Engineering QC score"
+          },
+          "valueDecimal": 0.33948
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "engineering-qc-category",
+                "display": "Engineering QC category"
+              }
+            ],
+            "text": "Engineering QC category"
+          },
+          "valueString": "Manual review required"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "longitudinal-interpretation",
+                "display": "Longitudinal interpretation"
+              }
+            ],
+            "text": "Longitudinal interpretation"
+          },
+          "valueString": "withheld-pending-human-review"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "scenario-alignment",
+                "display": "Competition scenario alignment"
+              }
+            ],
+            "text": "Competition scenario alignment"
+          },
+          "valueBoolean": true
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/neurofhir-qc",
+                "code": "selected-mask-artifact",
+                "display": "Selected segmentation-mask artifact"
+              }
+            ],
+            "text": "Selected segmentation-mask artifact"
+          },
+          "valueString": "data/sample_masks/notebook_05/low-confidence/severe_modality_corruption_whole_tumor_binary.nii.gz"
+        }
+      ],
+      "note": [
+        {
+          "time": "2026-08-05T05:23:59Z",
+          "text": "No reviewer has acted yet. Notebook 08 must record acceptance, rejection, or correction-required with reviewer role, reason, note, and provenance."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Review decision: correction-required. Reason: Severe perturbation instability, a manual-review-required QC category, and withheld longitudinal interpretation require segmentation correction or reprocessing. Note: The original AI output remains preliminary and traceable. No corrected result has been supplied in this scripted step."
+        },
+        {
+          "authorReference": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          },
+          "time": "2026-08-05T05:42:26Z",
+          "text": "Review decision: rejected. Reason: The original unstable AI output is rejected after the correction-required branch because no corrected output was introduced into this scripted demonstration. Note: The rejected result is retained for audit and marked entered-in-error. It is never presented as a final result."
+        }
+      ],
+      "businessStatus": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+            "code": "rejected",
+            "display": "Rejected"
+          }
+        ],
+        "text": "Rejected"
+      },
+      "owner": {
+        "reference": "Practitioner/nqc-synthetic-research-reviewer"
+      },
+      "executionPeriod": {
+        "start": "2026-08-05T05:23:59Z",
+        "end": "2026-08-05T05:42:26Z"
+      },
+      "output": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-decision",
+                "display": "Review decision"
+              }
+            ],
+            "text": "Review decision"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "correction-required",
+                "display": "Correction Required"
+              }
+            ],
+            "text": "Correction Required"
+          }
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "reviewer-role",
+                "display": "Reviewer role"
+              }
+            ],
+            "text": "Reviewer role"
+          },
+          "valueString": "Synthetic research reviewer"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-reason",
+                "display": "Review reason"
+              }
+            ],
+            "text": "Review reason"
+          },
+          "valueString": "Severe perturbation instability, a manual-review-required QC category, and withheld longitudinal interpretation require segmentation correction or reprocessing."
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-note",
+                "display": "Review note"
+              }
+            ],
+            "text": "Review note"
+          },
+          "valueString": "The original AI output remains preliminary and traceable. No corrected result has been supplied in this scripted step."
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-decision",
+                "display": "Review decision"
+              }
+            ],
+            "text": "Review decision"
+          },
+          "valueCodeableConcept": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "rejected",
+                "display": "Rejected"
+              }
+            ],
+            "text": "Rejected"
+          }
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "reviewer-role",
+                "display": "Reviewer role"
+              }
+            ],
+            "text": "Reviewer role"
+          },
+          "valueString": "Synthetic research reviewer"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-reason",
+                "display": "Review reason"
+              }
+            ],
+            "text": "Review reason"
+          },
+          "valueString": "The original unstable AI output is rejected after the correction-required branch because no corrected output was introduced into this scripted demonstration."
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                "code": "review-note",
+                "display": "Review note"
+              }
+            ],
+            "text": "Review note"
+          },
+          "valueString": "The rejected result is retained for audit and marked entered-in-error. It is never presented as a final result."
+        }
+      ]
+    },
+    "Provenance/nqc-low-confidence-ai-generation-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-low-confidence-ai-generation-provenance",
+      "meta": {
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-demonstration",
+            "display": "Synthetic demonstration resource"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "public-deidentified-imaging-context",
+            "display": "Public de-identified imaging context"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "algorithmic-generation",
+            "display": "Algorithmic Generation"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-not-yet-performed",
+            "display": "Review Not Yet Performed"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-low-confidence-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-low-confidence-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-low-confidence-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:23:59Z",
+      "recorded": "2026-08-05T05:23:59Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+              "code": "generate-reviewable-neuroimaging-evidence",
+              "display": "Generate reviewable neuroimaging evidence"
+            }
+          ],
+          "text": "Generate reviewable neuroimaging evidence"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/provenance-activity",
+            "code": "ai-assisted-generation",
+            "display": "AI-assisted evidence generation"
+          }
+        ],
+        "text": "AI-assisted evidence generation"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "author",
+                "display": "Author"
+              }
+            ],
+            "text": "Author"
+          },
+          "who": {
+            "reference": "Device/nqc-monai-brats-segresnet-0-5-4"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "source",
+          "what": {
+            "reference": "ImagingStudy/imaging-followup-low-confidence"
+          }
+        },
+        {
+          "role": "source",
+          "what": {
+            "reference": "Observation/prior-volume-low-confidence"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/synthetic-fhir-public-imaging-only"
+      ]
+    },
+    "Practitioner/nqc-synthetic-research-reviewer": {
+      "resourceType": "Practitioner",
+      "id": "nqc-synthetic-research-reviewer",
+      "meta": {
+        "profile": [],
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-reviewer",
+            "display": "Synthetic Reviewer"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "research-example-use",
+            "display": "Research Example Use"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "not-a-clinician-identity",
+            "display": "Not A Clinician Identity"
+          }
+        ]
+      },
+      "identifier": [
+        {
+          "system": "https://neurofhir-qc.org/fhir/identifier/Practitioner",
+          "value": "nqc-synthetic-research-reviewer"
+        }
+      ],
+      "active": true,
+      "name": [
+        {
+          "use": "usual",
+          "text": "Synthetic Research Reviewer",
+          "family": "Reviewer",
+          "given": [
+            "Synthetic",
+            "Research"
+          ]
+        }
+      ],
+      "communication": [
+        {
+          "coding": [
+            {
+              "system": "urn:ietf:bcp:47",
+              "code": "en",
+              "display": "English"
+            }
+          ],
+          "text": "English"
+        }
+      ]
+    },
+    "Provenance/nqc-low-confidence-review-correction-required-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-low-confidence-review-correction-required-provenance",
+      "meta": {
+        "profile": [],
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-review-event",
+            "display": "Human Review Event"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-correction-required",
+            "display": "Review Correction Required"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-reviewer",
+            "display": "Synthetic Reviewer"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-low-confidence-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-low-confidence-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-low-confidence-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:42:26Z",
+      "recorded": "2026-08-05T05:42:26Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+              "code": "correction-required",
+              "display": "Correction Required"
+            }
+          ],
+          "text": "Correction Required"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-activity",
+            "code": "human-review-correction-required",
+            "display": "Human review: correction required"
+          }
+        ],
+        "text": "Human review: correction required"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "verifier",
+                "display": "Verifier"
+              }
+            ],
+            "text": "Verifier"
+          },
+          "role": [
+            {
+              "coding": [
+                {
+                  "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                  "code": "synthetic-research-reviewer",
+                  "display": "Synthetic research reviewer"
+                }
+              ],
+              "text": "Synthetic research reviewer"
+            }
+          ],
+          "who": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "revision",
+          "what": {
+            "reference": "Provenance/nqc-low-confidence-ai-generation-provenance"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/scripted-synthetic-human-review"
+      ]
+    },
+    "Provenance/nqc-low-confidence-review-rejected-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-low-confidence-review-rejected-provenance",
+      "meta": {
+        "profile": [],
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-review-event",
+            "display": "Human Review Event"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-rejected",
+            "display": "Review Rejected"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-reviewer",
+            "display": "Synthetic Reviewer"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-low-confidence-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-low-confidence-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-low-confidence-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:42:26Z",
+      "recorded": "2026-08-05T05:42:26Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+              "code": "rejected",
+              "display": "Rejected"
+            }
+          ],
+          "text": "Rejected"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-activity",
+            "code": "human-review-rejected",
+            "display": "Human review: rejected"
+          }
+        ],
+        "text": "Human review: rejected"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "verifier",
+                "display": "Verifier"
+              }
+            ],
+            "text": "Verifier"
+          },
+          "role": [
+            {
+              "coding": [
+                {
+                  "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                  "code": "synthetic-research-reviewer",
+                  "display": "Synthetic research reviewer"
+                }
+              ],
+              "text": "Synthetic research reviewer"
+            }
+          ],
+          "who": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "revision",
+          "what": {
+            "reference": "Provenance/nqc-low-confidence-ai-generation-provenance"
+          }
+        },
+        {
+          "role": "revision",
+          "what": {
+            "reference": "Provenance/nqc-low-confidence-review-correction-required-provenance"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/scripted-synthetic-human-review"
+      ]
+    },
+    "Provenance/nqc-progression-review-accepted-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-progression-review-accepted-provenance",
+      "meta": {
+        "profile": [],
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-review-event",
+            "display": "Human Review Event"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-reviewer",
+            "display": "Synthetic Reviewer"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-progression-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-progression-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-progression-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:42:26Z",
+      "recorded": "2026-08-05T05:42:26Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+              "code": "accepted",
+              "display": "Accepted"
+            }
+          ],
+          "text": "Accepted"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-activity",
+            "code": "human-review-accepted",
+            "display": "Human review: accepted"
+          }
+        ],
+        "text": "Human review: accepted"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "verifier",
+                "display": "Verifier"
+              }
+            ],
+            "text": "Verifier"
+          },
+          "role": [
+            {
+              "coding": [
+                {
+                  "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                  "code": "synthetic-research-reviewer",
+                  "display": "Synthetic research reviewer"
+                }
+              ],
+              "text": "Synthetic research reviewer"
+            }
+          ],
+          "who": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "revision",
+          "what": {
+            "reference": "Provenance/nqc-progression-ai-generation-provenance"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/scripted-synthetic-human-review"
+      ]
+    },
+    "Provenance/nqc-stable-review-accepted-provenance": {
+      "resourceType": "Provenance",
+      "id": "nqc-stable-review-accepted-provenance",
+      "meta": {
+        "profile": [],
+        "tag": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "human-review-event",
+            "display": "Human Review Event"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "review-accepted",
+            "display": "Review Accepted"
+          },
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/data-origin",
+            "code": "synthetic-reviewer",
+            "display": "Synthetic Reviewer"
+          }
+        ]
+      },
+      "target": [
+        {
+          "reference": "Observation/nqc-stable-current-ai-volume"
+        },
+        {
+          "reference": "DiagnosticReport/nqc-stable-ai-imaging-report"
+        },
+        {
+          "reference": "Task/nqc-stable-human-review-task"
+        }
+      ],
+      "occurredDateTime": "2026-08-05T05:42:26Z",
+      "recorded": "2026-08-05T05:42:26Z",
+      "reason": [
+        {
+          "coding": [
+            {
+              "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+              "code": "accepted",
+              "display": "Accepted"
+            }
+          ],
+          "text": "Accepted"
+        }
+      ],
+      "activity": {
+        "coding": [
+          {
+            "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-activity",
+            "code": "human-review-accepted",
+            "display": "Human review: accepted"
+          }
+        ],
+        "text": "Human review: accepted"
+      },
+      "agent": [
+        {
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                "code": "verifier",
+                "display": "Verifier"
+              }
+            ],
+            "text": "Verifier"
+          },
+          "role": [
+            {
+              "coding": [
+                {
+                  "system": "https://neurofhir-qc.org/fhir/CodeSystem/review-decision",
+                  "code": "synthetic-research-reviewer",
+                  "display": "Synthetic research reviewer"
+                }
+              ],
+              "text": "Synthetic research reviewer"
+            }
+          ],
+          "who": {
+            "reference": "Practitioner/nqc-synthetic-research-reviewer"
+          }
+        }
+      ],
+      "entity": [
+        {
+          "role": "revision",
+          "what": {
+            "reference": "Provenance/nqc-stable-ai-generation-provenance"
+          }
+        }
+      ],
+      "policy": [
+        "https://neurofhir-qc.org/policy/scripted-synthetic-human-review"
+      ]
+    }
+  },
+  "evaluation_domains": [
+    {
+      "domain": "Segmentation and volumetry",
+      "evidence_status": "executed-quantitative",
+      "primary_result": "3/3 cases; mean whole-tumor Dice 0.9014; mean absolute volume error 1.313 mL",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Retain demonstration-benchmark wording."
+    },
+    {
+      "domain": "Robustness and QC",
+      "evidence_status": "executed-quantitative",
+      "primary_result": "4 perturbation types; 12 standard runs; 1 severe challenge; low-confidence detection 100%",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Retain engineering-threshold wording."
+    },
+    {
+      "domain": "Longitudinal behavior",
+      "evidence_status": "executed-quantitative",
+      "primary_result": "3/3 calculations and scenario alignment; low-confidence interpretation withheld",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Retain non-clinical response-criteria wording."
+    },
+    {
+      "domain": "FHIR conformance",
+      "evidence_status": "executed-quantitative",
+      "primary_result": "34/34 validation targets; 7/7 transactions; 79/79 entries",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Package representative OperationOutcome, Bundle, and graph."
+    },
+    {
+      "domain": "Human-review workflow and safety",
+      "evidence_status": "executed-scripted-workflow",
+      "primary_result": "2 accepted; 1 correction-required intermediate; 1 rejected; 4 Provenance events",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Describe reviewer as synthetic research reviewer."
+    },
+    {
+      "domain": "Timing",
+      "evidence_status": "partially-executed",
+      "primary_result": "Mean GPU inference 1.78 s; 74 archived FHIR request timings",
+      "competition_evidence_complete": false,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Measure true UI end-to-end task time and click count."
+    },
+    {
+      "domain": "Usability",
+      "evidence_status": "protocol-ready-not-executed",
+      "primary_result": "6/6 technical task paths verified; protocol, task sheet, SUS form, and result template prepared",
+      "competition_evidence_complete": false,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Run an honest human usability evaluation and report roles, task completion, errors, time, SUS, feedback, and design changes."
+    },
+    {
+      "domain": "Reproducibility and governance",
+      "evidence_status": "executed-quantitative",
+      "primary_result": "5/5 predecessor audits completed; all required evaluation artifacts non-empty",
+      "competition_evidence_complete": true,
+      "clinical_validation_claimed": false,
+      "remaining_action": "Package requirements, checksums, and setup instructions."
+    }
+  ],
+  "limitations": [
+    "Three-case executable demonstration benchmark; not independent external validation.",
+    "Public images are linked to synthetic FHIR context, not real longitudinal clinical records.",
+    "QC scores are engineering workflow signals, not clinical safety probabilities.",
+    "The reviewer is synthetic; clinician agreement and usability are not claimed.",
+    "The public HAPI R4 sandbox is not a production hospital environment.",
+    "Production SMART OAuth and clinical deployment are not claimed."
+  ]
+}

@@ -1,0 +1,18 @@
+services:
+  reviewer-ui:
+    build:
+      context: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - evidence-api
+
+  evidence-api:
+    build:
+      context: ./backend
+    environment:
+      NEUROFHIR_QC_APP_DATA_PATH: /app/data/app_data.json
+      NEUROFHIR_QC_FHIR_BASE_URL: https://hapi.fhir.org/baseR4
+      NEUROFHIR_QC_ALLOWED_ORIGINS: "*"
+    ports:
+      - "8000:8000"
