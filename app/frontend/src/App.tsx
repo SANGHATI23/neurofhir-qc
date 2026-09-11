@@ -295,7 +295,141 @@ function Longitudinal({ item }: any) {
   );
 }
 
-function HumanReview({ item }: any) {
+
+function EvidencePassport({ data, item, onOpenFHIR }: any) {
+  const observationReference = item.fhir.generated_resources.Observation;
+  const observation = data.representative_fhir_resources?.[observationReference];
+  const method =
+    observation?.method?.text ||
+    "MONAI SegResNet with NeuroFHIR-QC processing";
+  const deviceReference =
+    observation?.device?.reference ||
+    "Device/nqc-monai-brats-segresnet-0-5-4";
+  const provenanceReference = item.fhir.generated_resources.Provenance;
+  const changeDisplay = item.longitudinal.interpretation_withheld
+    ? "Withheld pending human review"
+    : `${item.longitudinal.percent_change >= 0 ? "+" : ""}${number(
+        item.longitudinal.percent_change,
+        2
+      )}%`;
+  const currentStatus =
+    observation?.status || item.review.final_observation_status || "preliminary";
+
+  return (
+    <section className="panel evidence-passport">
+      <div className="passport-head">
+        <div>
+          <span className="eyebrow">AI Evidence Passport</span>
+          <h3>Evidence identity, quality, provenance, and review gate</h3>
+        </div>
+        <Pill value="Human review required" tone="warn" />
+      </div>
+
+      <div className="passport-grid">
+        <div>
+          <span>Model / method</span>
+          <strong>{method}</strong>
+        </div>
+        <div>
+          <span>Device identity</span>
+          <code>{deviceReference}</code>
+        </div>
+        <div>
+          <span>Engineering QC</span>
+          <strong>{item.qc.category}</strong>
+          <small>Score {number(item.qc.score, 3)}</small>
+        </div>
+        <div>
+          <span>Current AI-derived volume</span>
+          <strong>{number(item.longitudinal.current_volume_ml, 3)} mL</strong>
+        </div>
+        <div>
+          <span>Longitudinal display</span>
+          <strong>{changeDisplay}</strong>
+        </div>
+        <div>
+          <span>Provenance completeness</span>
+          <strong>{number(item.qc.provenance_completeness_score * 100, 1)}%</strong>
+        </div>
+        <div>
+          <span>Current FHIR Observation status</span>
+          <strong>{currentStatus}</strong>
+        </div>
+        <div>
+          <span>AI-generation provenance</span>
+          <code>{provenanceReference}</code>
+        </div>
+      </div>
+
+      <details className="passport-provenance">
+        <summary>View provenance summary</summary>
+        <div className="passport-provenance-body">
+          <p>
+            <strong>Observation:</strong> <code>{observationReference}</code>
+          </p>
+          <p>
+            <strong>Device:</strong> <code>{deviceReference}</code>
+          </p>
+          <p>
+            <strong>AI-generation Provenance:</strong> <code>{provenanceReference}</code>
+          </p>
+          <p>
+            <strong>Review Provenance:</strong>{" "}
+            <code>
+              {item.review.events[item.review.events.length - 1]
+                ?.review_provenance_reference || "Not available"}
+            </code>
+          </p>
+        </div>
+      </details>
+
+      <div className="passport-footer">
+        <p>
+          <strong>Limitation:</strong> Engineering QC scores and display thresholds
+          support this research workflow; they are not calibrated clinical
+          probabilities or validated clinical response criteria.
+        </p>
+        <button type="button" className="passport-action" onClick={onOpenFHIR}>
+          <Database size={17} />
+          View FHIR evidence
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function ReconciliationSummary({ item }: any) {
+  const events = item.review.events || [];
+  const finalEvent =
+    events.find((event: any) => event.final_event_for_case) ||
+    events[events.length - 1];
+
+  return (
+    <section className="panel reconciliation-summary">
+      <div>
+        <span className="eyebrow">Human–AI reconciliation</span>
+        <h3>{(item.review.final_decision || "Pending").replaceAll("-", " ")}</h3>
+        <p>{finalEvent?.reason || "No final review reason is available."}</p>
+      </div>
+      <div className="reconciliation-state">
+        <div>
+          <span>Observation</span>
+          <strong>{item.review.final_observation_status}</strong>
+        </div>
+        <div>
+          <span>DiagnosticReport</span>
+          <strong>{item.review.final_report_status}</strong>
+        </div>
+        <div>
+          <span>Task</span>
+          <strong>{item.review.final_task_status}</strong>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HumanReview({ data, item, onOpenFHIR }: any) {
   return (
     <>
       <Header
@@ -304,12 +438,14 @@ function HumanReview({ item }: any) {
         subtitle="Accept, correction-required, and reject transitions with review Provenance."
       />
       <PatientBanner item={item} />
+      <EvidencePassport data={data} item={item} onOpenFHIR={onOpenFHIR} />
       <div className="metric-grid">
         <Metric label="Final decision" value={item.review.final_decision || "Pending"} />
         <Metric label="Observation" value={item.review.final_observation_status} />
         <Metric label="DiagnosticReport" value={item.review.final_report_status} />
         <Metric label="Task" value={item.review.final_task_status} />
       </div>
+      <ReconciliationSummary item={item} />
       <div className="review-list">
         {item.review.events.map((event: any) => (
           <article className="panel review-card" key={event.event_id}>
@@ -494,7 +630,7 @@ export default function App() {
           {screen === "timeline" ? <Timeline item={selectedCase} /> : null}
           {screen === "mri" ? <MRIReview item={selectedCase} /> : null}
           {screen === "longitudinal" ? <Longitudinal item={selectedCase} /> : null}
-          {screen === "review" ? <HumanReview item={selectedCase} /> : null}
+          {screen === "review" ? <HumanReview data={data} item={selectedCase} onOpenFHIR={() => setScreen("fhir")} /> : null}
           {screen === "fhir" ? <FHIRAudit data={data} item={selectedCase} /> : null}
         </div>
       </main>
