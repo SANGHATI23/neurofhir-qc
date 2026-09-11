@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>NeuroFHIR-Review Study</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#15242d;background:#f4f7f9}
+*{box-sizing:border-box}body{margin:0}.shell{max-width:1040px;margin:auto;padding:28px 18px 60px}
+header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+h1{margin:5px 0;font-size:38px}h2,h3{margin-top:0}.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:800;color:#0f766e}
+.card{background:#fff;border:1px solid #d9e3e8;border-radius:16px;padding:22px;margin:15px 0;box-shadow:0 8px 24px rgba(20,50,65,.06)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.metric{padding:14px;border:1px solid #e0e8ec;border-radius:10px;background:#f8fafb}
+.metric span{display:block;color:#697b86;font-size:12px}.metric b{font-size:20px}.muted{color:#60717c}
+label{display:grid;gap:6px;margin:12px 0;font-weight:650}input,select,textarea,button{font:inherit}
+input,select,textarea{padding:10px;border:1px solid #bdcbd3;border-radius:9px;background:white}
+textarea{min-height:86px}button{padding:10px 14px;border:1px solid #b8c7cf;border-radius:10px;background:white;cursor:pointer}
+button.primary{background:#164e63;color:white;border-color:#164e63;font-weight:800}
+.notice{padding:12px 14px;background:#eef7f8;border-left:4px solid #0f766e;border-radius:8px;margin:14px 0}
+.warning{padding:10px 12px;background:#fff7ed;border-left:4px solid #c2410c;border-radius:8px}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.steps span{text-align:center;padding:8px;background:#e7edf1;border-radius:8px;font-size:12px}
+.steps .active{background:#164e63;color:white;font-weight:800}.steps .done{background:#dff4ef;color:#115e59}
+.ai{border:2px solid #3b82a0;background:#f2fbfd;border-radius:14px;padding:18px;margin:16px 0}
+.ai .big{font-size:30px;font-weight:850;margin:8px 0}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0}
+.choices button.selected{background:#e8f5f7;border-color:#164e63;font-weight:800}
+.preview{display:block;max-width:560px;width:100%;margin:14px auto;border-radius:10px;background:#081017}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0f1720;color:#d7edf2;padding:12px;border-radius:10px;max-height:300px;overflow:auto}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.badge{padding:6px 10px;border-radius:999px;background:#dff4ef;color:#115e59;font-weight:800;font-size:12px}
+footer{text-align:center;color:#6a7b85;font-size:12px;margin-top:24px}
+@media(max-width:760px){header{display:block}.steps{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header>
+<div><div class="eyebrow">Formative research study</div><h1>NeuroFHIR-Review</h1><div class="muted">Longitudinal neuroimaging evidence review</div></div>
+<div class="badge">Research prototype</div>
+</header>
+<div id="app" class="card">Loading…</div>
+<footer>Public de-identified MRI + standardized synthetic workflow context • No patient-care use</footer>
+</main>
+
+<script>
+let D=null;
+const SCREENS=["Case brief","Evidence review","Initial judgment","AI review","Evidence Passport","Final action"];
+let S={
+ started:false,participant:"",tier:"domain-adjacent",sequence:"",
+ order:[],index:0,screen:0,events:[],responses:{},
+ initial:"",initialConf:3,finalAction:"",finalConf:3,reason:"",rationale:"",
+ provenanceOpened:false,session:""
+};
+const q=s=>document.querySelector(s);
+function now(){return new Date().toISOString()}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function hashText(t){let h=2166136261;for(let i=0;i<t.length;i++){h^=t.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function participantNumber(id){
+ const m=id.match(/(\d+)$/);
+ return m?Number(m[1]):null
+}
+function assignSequence(id){
+ const n=participantNumber(id);
+ if(n===null||!Number.isInteger(n)||n<1)return null;
+ return n%2===1?"A":"B"
+}
+function conditionForScenario(scenarioId,sequence){
+ const mapA={
+  "S01":"evidence-first","S02":"ai-first",
+  "S03":"ai-first","S04":"evidence-first",
+  "S05":"evidence-first","S06":"ai-first",
+  "S07":"ai-first","S08":"evidence-first",
+  "S09":"evidence-first","S10":"ai-first",
+  "S11":"ai-first","S12":"evidence-first"
+ };
+ const a=mapA[scenarioId];
+ if(!a)throw new Error("Unknown scenario ID: "+scenarioId);
+ return sequence==="A"?a:(a==="evidence-first"?"ai-first":"evidence-first")
+}
+function shuffle(items,seed){let out=[...items],x=hashText(seed);function r(){x=(Math.imul(x,1664525)+1013904223)>>>0;return x/4294967296}for(let i=out.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[out[i],out[j]]=[out[j],out[i]]}return out}
+function current(){return S.order[S.index]}
+function originalScenarioIndex(c){return Number(c.scenario_id.slice(1))-1}
+function condition(){return conditionForScenario(current().scenario_id,S.sequence)}
+function path(){return S.tier==="neuro-specialist"?"A":"B"}
+function log(type,extra={}){
+ if(!S.started||!current())return;
+ S.events.push({
+  session_id:S.session,participant_id:S.participant,reviewer_tier:S.tier,
+  study_path:path(),sequence:S.sequence,scenario_id:current().scenario_id,
+  condition:condition(),event_type:type,event_utc:now(),screen:SCREENS[S.screen],...extra
+ });
+ localStorage.setItem("neurofhir-review-nb14-events",JSON.stringify(S.events));
+}
+function download(name,text,type="application/json"){
+ const blob=new Blob([text],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)
+}
+function csvEsc(v){return '"'+String(v??"").replaceAll('"','""')+'"'}
+function resetFields(){S.initial="";S.initialConf=3;S.finalAction="";S.finalConf=3;S.reason="";S.rationale="";S.provenanceOpened=false}
+function startStudy(){
+ const id=q("#participant").value.trim();
+ if(!id){alert("Enter a pseudonymous participant ID.");return}
+ const seq=assignSequence(id);
+ if(!seq){
+  alert("Use the coordinator-assigned sequential pseudonymous ID, for example P001.");
+  return
+ }
+ S.participant=id;S.tier=q("#tier").value;S.sequence=seq;
+ S.order=shuffle(D.cases,"order-"+id);S.started=true;S.session="NFR-"+id+"-"+Date.now();
+ S.index=0;S.screen=0;S.events=[];S.responses={};resetFields();render();log("case_opened")
+}
+function nextScreen(n){
+ S.screen=n;render();log("screen_opened");
+ if(n===1){
+  log("evidence_opened");
+  if(condition()==="ai-first"){
+   log("ai_exposed",{ai_visible_before_initial_judgment:true});
+  }
+ }
+ if(n===3 && condition()==="evidence-first"){
+  log("ai_exposed",{ai_visible_before_initial_judgment:false});
+ }
+ if(n===4)log("passport_opened");
+}
+function chooseInitial(v){S.initial=v;render()}
+function chooseFinal(v){S.finalAction=v;render()}
+function submitInitial(){
+ if(!S.initial){alert("Choose an initial judgment.");return}
+ S.initialConf=Number(q("#initialConf").value);
+ S.responses[current().scenario_id]={
+  scenario_id:current().scenario_id,case_id:current().case_id,
+  initial_judgment:S.initial,initial_confidence:S.initialConf,
+  initial_submitted_utc:now()
+ };
+ log("initial_judgment_submitted",{initial_judgment:S.initial,initial_confidence:S.initialConf,ai_visible_before_initial_judgment:condition()==="ai-first"});
+ nextScreen(3)
+}
+function toggleProv(){
+ S.provenanceOpened=!S.provenanceOpened;
+ if(S.provenanceOpened)log("provenance_opened",{provenance_opened:true});
+ render()
+}
+function submitFinal(){
+ S.finalConf=Number(q("#finalConf").value);S.reason=q("#reason").value;S.rationale=q("#rationale").value.slice(0,400);
+ if(!S.finalAction||!S.reason){alert("Choose a final action and reason code.");return}
+ S.responses[current().scenario_id]={
+  ...(S.responses[current().scenario_id]||{}),
+  final_action:S.finalAction,final_confidence:S.finalConf,reason_code:S.reason,
+  rationale:S.rationale,provenance_opened:S.provenanceOpened,final_submitted_utc:now()
+ };
+ log("final_action_submitted",{final_action:S.finalAction,final_confidence:S.finalConf,reason_code:S.reason,rationale:S.rationale,provenance_opened:S.provenanceOpened});
+ S.index++;S.screen=0;resetFields();
+ if(S.index<D.cases.length){render();log("case_opened")}else render()
+}
+function exportJSON(){
+ download(`neurofhir_review_${S.participant}.json`,JSON.stringify({
+  exported_utc:now(),participant_id:S.participant,reviewer_tier:S.tier,
+  study_path:path(),sequence:S.sequence,responses:S.responses,events:S.events
+ },null,2))
+}
+function exportCSV(){
+ const cols=["participant_id","reviewer_tier","study_path","sequence","scenario_id","case_id","condition","initial_judgment","initial_confidence","provenance_opened","final_action","final_confidence","reason_code","rationale","initial_submitted_utc","final_submitted_utc"];
+ const rows=Object.values(S.responses).map(r=>({
+  participant_id:S.participant,reviewer_tier:S.tier,study_path:path(),sequence:S.sequence,
+  condition:conditionForScenario(r.scenario_id,S.sequence),...r
+ }));
+ const text=[cols.map(csvEsc).join(","),...rows.map(r=>cols.map(c=>csvEsc(r[c])).join(","))].join("\n");
+ download(`neurofhir_review_${S.participant}.csv`,text,"text/csv")
+}
+function steps(){return `<div class="steps">${SCREENS.map((x,i)=>`<span class="${i===S.screen?"active":i<S.screen?"done":""}">${i+1}. ${esc(x)}</span>`).join("")}</div>`}
+function aiBox(c){return `<div class="ai"><b>AI recommendation</b><div class="big">${esc(c.ai.conclusion)}</div><div class="grid"><div class="metric"><span>Confidence</span><b>${esc(c.ai.confidence_label)}</b></div><div class="metric"><span>Displayed QC state</span><b>${esc(c.ai.displayed_qc_state)}</b></div></div><div class="warning">${esc(c.ai.known_limitation)}</div></div>`}
+function render(){
+ const app=q("#app");
+ if(!S.started){
+  app.innerHTML=`<h2>Study setup</h2><p class="muted">Use only the sequential pseudonymous participant ID assigned by the study coordinator. Do not enter PHI.</p><div class="grid"><label>Participant ID<input id="participant" placeholder="P001"></label><label>Reviewer category<select id="tier"><option value="neuro-specialist">Neuro specialist</option><option value="domain-adjacent" selected>Clinical/biomedical/imaging-AI researcher</option><option value="trained-reviewer">Trained reviewer</option></select></label></div><div class="notice">${esc(D.study_boundary)}</div><button class="primary" onclick="startStudy()">Start review</button>`;
+  return
+ }
+ if(S.index>=D.cases.length){
+  app.innerHTML=`<h2>Review complete</h2><p>Export both study files and return them using the study coordinator's approved process.</p><div class="actions"><button class="primary" onclick="exportCSV()">Export case responses CSV</button><button onclick="exportJSON()">Export interaction log JSON</button></div>`;
+  return
+ }
+ const c=current(),cond=condition(),aiEarly=cond==="ai-first",p=path();
+ let body=`<div style="display:flex;justify-content:space-between;gap:12px"><div><div class="eyebrow">Case review</div><h2>${esc(c.display_title)}</h2></div><div class="badge">${S.index+1} / ${D.cases.length}</div></div>${steps()}`;
+ if(S.screen===0){
+  body+=`<h3>1. Case brief</h3><p class="muted">Review the standardized case evidence. The study interface may present information in different sequences across cases.</p><div class="metric"><span>Case ID</span><b>${esc(c.case_id)}</b></div><button class="primary" onclick="nextScreen(1)">Review evidence</button>`
+ }
+ if(S.screen===1){
+  body+=`<h3>2. Evidence review</h3><img class="preview" src="${esc(c.preview_file)}" alt="Neuroimaging evidence preview"><div class="grid"><div class="metric"><span>Prior volume</span><b>${esc(c.longitudinal.prior_volume_ml)} mL</b></div><div class="metric"><span>Current AI-derived volume</span><b>${esc(c.longitudinal.current_volume_ml)} mL</b></div><div class="metric"><span>Change</span><b>${esc(c.longitudinal.percent_change)}%</b></div></div><div class="notice">${esc(c.longitudinal.context_note)}</div>${aiEarly?aiBox(c):""}<button class="primary" onclick="nextScreen(2)">Record first judgment</button>`
+ }
+ if(S.screen===2){
+  const opts=p==="A"?D.path_A_initial_labels:D.path_B_initial_labels;
+  body+=`<h3>3. Initial judgment</h3><p class="muted">${aiEarly?"Base your first judgment on all information currently visible.":"Base your first judgment on the evidence shown so far."}</p><div class="choices">${opts.map(o=>`<button class="${S.initial===o?"selected":""}" onclick='chooseInitial(${JSON.stringify(o)})'>${esc(o)}</button>`).join("")}</div><label>Confidence: <b>${S.initialConf}/5</b><input id="initialConf" type="range" min="1" max="5" value="${S.initialConf}" oninput="S.initialConf=Number(this.value);render()"></label><button class="primary" onclick="submitInitial()">Submit first judgment</button>`
+ }
+ if(S.screen===3){
+  body+=`<h3>4. AI review</h3>${aiBox(c)}<button class="primary" onclick="nextScreen(4)">Inspect Evidence Passport</button>`
+ }
+ if(S.screen===4){
+  body+=`<h3>5. AI Evidence Passport</h3><div class="grid"><div class="metric"><span>Model</span><b>${esc(c.passport.model_name)}</b></div><div class="metric"><span>Version</span><b>${esc(c.passport.model_version)}</b></div><div class="metric"><span>Input QC</span><b>${esc(c.passport.input_qc)}</b></div><div class="metric"><span>Provenance</span><b>${esc(c.passport.provenance_state)}</b></div></div><div class="notice">${esc(c.passport.processing_context)}</div><button onclick="toggleProv()">${S.provenanceOpened?"Hide provenance details":"Open provenance details"}</button>${S.provenanceOpened?`<pre>${esc(JSON.stringify({provenance_state:c.passport.provenance_state,note:c.passport.provenance_note,intended_use:c.passport.intended_use},null,2))}</pre>`:""}<p><button class="primary" onclick="nextScreen(5)">Make final decision</button></p>`
+ }
+ if(S.screen===5){
+  body+=`<h3>6. Final action</h3><div class="choices">${D.final_actions.map(o=>`<button class="${S.finalAction===o?"selected":""}" onclick='chooseFinal(${JSON.stringify(o)})'>${esc(o)}</button>`).join("")}</div><label>Final confidence: <b>${S.finalConf}/5</b><input id="finalConf" type="range" min="1" max="5" value="${S.finalConf}" oninput="S.finalConf=Number(this.value);render()"></label><label>Reason code<select id="reason"><option value="">Choose…</option>${D.reason_codes.map(r=>`<option value="${esc(r)}" ${S.reason===r?"selected":""}>${esc(r)}</option>`).join("")}</select></label><label>Short rationale (optional)<textarea id="rationale" maxlength="400">${esc(S.rationale)}</textarea></label><div class="notice">${p==="A"?"This is a formative expert-review study, not clinical deployment validation.":"This is a workflow-review task, not a diagnostic-accuracy test."}</div><button class="primary" onclick="submitFinal()">Submit and continue</button>`
+ }
+ app.innerHTML=body
+}
+fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(e=>{q("#app").innerHTML="<b>Failed to load study data:</b> "+esc(e)})
+</script>
+</body>
+</html>

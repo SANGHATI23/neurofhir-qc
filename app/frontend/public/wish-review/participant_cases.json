@@ -1,0 +1,373 @@
+{
+  "generated_utc": "2026-09-06T18:08:39Z",
+  "project": "NeuroFHIR-Review",
+  "case_count": 12,
+  "cases": [
+    {
+      "scenario_id": "S01",
+      "case_id": "WISH-01",
+      "display_title": "Review Case 01",
+      "preview_file": "assets/WISH-01.png",
+      "longitudinal": {
+        "prior_volume_ml": 23.331,
+        "current_volume_ml": 24.031,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S02",
+      "case_id": "WISH-02",
+      "display_title": "Review Case 02",
+      "preview_file": "assets/WISH-02.png",
+      "longitudinal": {
+        "prior_volume_ml": 13.953,
+        "current_volume_ml": 22.324,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S03",
+      "case_id": "WISH-03",
+      "display_title": "Review Case 03",
+      "preview_file": "assets/WISH-03.png",
+      "longitudinal": {
+        "prior_volume_ml": 46.483,
+        "current_volume_ml": 47.877,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "low",
+        "confidence_display_score": 0.39,
+        "displayed_qc_state": "borderline",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "borderline",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S04",
+      "case_id": "WISH-04",
+      "display_title": "Review Case 04",
+      "preview_file": "assets/WISH-04.png",
+      "longitudinal": {
+        "prior_volume_ml": 28.649,
+        "current_volume_ml": 45.839,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "low",
+        "confidence_display_score": 0.39,
+        "displayed_qc_state": "borderline",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "borderline",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S05",
+      "case_id": "WISH-05",
+      "display_title": "Review Case 05",
+      "preview_file": "assets/WISH-05.png",
+      "longitudinal": {
+        "prior_volume_ml": 65.944,
+        "current_volume_ml": 67.922,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S06",
+      "case_id": "WISH-06",
+      "display_title": "Review Case 06",
+      "preview_file": "assets/WISH-06.png",
+      "longitudinal": {
+        "prior_volume_ml": 56.197,
+        "current_volume_ml": 89.916,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S07",
+      "case_id": "WISH-07",
+      "display_title": "Review Case 07",
+      "preview_file": "assets/WISH-07.png",
+      "longitudinal": {
+        "prior_volume_ml": 121.44,
+        "current_volume_ml": 125.083,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "incomplete",
+        "provenance_note": "Some lineage fields are unavailable in this standardized study case.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S08",
+      "case_id": "WISH-08",
+      "display_title": "Review Case 08",
+      "preview_file": "assets/WISH-08.png",
+      "longitudinal": {
+        "prior_volume_ml": 74.864,
+        "current_volume_ml": 119.783,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "incomplete",
+        "provenance_note": "Some lineage fields are unavailable in this standardized study case.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S09",
+      "case_id": "WISH-09",
+      "display_title": "Review Case 09",
+      "preview_file": "assets/WISH-09.png",
+      "longitudinal": {
+        "prior_volume_ml": 127.247,
+        "current_volume_ml": 131.064,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "fail",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "fail",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S10",
+      "case_id": "WISH-10",
+      "display_title": "Review Case 10",
+      "preview_file": "assets/WISH-10.png",
+      "longitudinal": {
+        "prior_volume_ml": 97.71,
+        "current_volume_ml": 156.336,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "fail",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "fail",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S11",
+      "case_id": "WISH-11",
+      "display_title": "Review Case 11",
+      "preview_file": "assets/WISH-11.png",
+      "longitudinal": {
+        "prior_volume_ml": 166.185,
+        "current_volume_ml": 171.171,
+        "percent_change": 3.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Progression",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    },
+    {
+      "scenario_id": "S12",
+      "case_id": "WISH-12",
+      "display_title": "Review Case 12",
+      "preview_file": "assets/WISH-12.png",
+      "longitudinal": {
+        "prior_volume_ml": 142.114,
+        "current_volume_ml": 227.382,
+        "percent_change": 60.0,
+        "context_note": "Standardized longitudinal research context; not a true repeated-scan history of the public-image donor."
+      },
+      "ai": {
+        "conclusion": "Stable",
+        "confidence_label": "high",
+        "confidence_display_score": 0.91,
+        "displayed_qc_state": "pass",
+        "known_limitation": "AI confidence is a study/workflow display signal and is not a calibrated clinical probability."
+      },
+      "passport": {
+        "model_name": "MONAI brats_mri_segmentation",
+        "model_version": "0.5.4",
+        "intended_use": "Research workflow support; not diagnostic use.",
+        "input_qc": "pass",
+        "provenance_state": "complete",
+        "provenance_note": "Lineage available for inspection.",
+        "processing_context": "AI-derived volumetry generated with the pinned NeuroFHIR-QC model; longitudinal context is standardized for this formative study."
+      }
+    }
+  ],
+  "path_A_initial_labels": [
+    "Stable",
+    "Progression",
+    "Uncertain"
+  ],
+  "path_B_initial_labels": [
+    "Evidence sufficient",
+    "Flag concern",
+    "Escalate for expert review"
+  ],
+  "final_actions": [
+    "Accept AI",
+    "Keep initial judgment",
+    "Amend",
+    "Reject AI",
+    "Escalate"
+  ],
+  "reason_codes": [
+    "evidence-supports-ai",
+    "ai-conflicts-with-longitudinal-evidence",
+    "low-ai-confidence",
+    "qc-failure",
+    "missing-or-incomplete-provenance",
+    "model-limitation-relevant",
+    "evidence-incomplete",
+    "uncertain-requires-expert-review",
+    "other"
+  ],
+  "study_boundary": "Formative research prototype. Public de-identified MRI plus standardized/synthetic longitudinal workflow context. No patient-care use.",
+  "participant_id_rule": "Coordinator assigns sequential pseudonymous IDs P001, P002, ... Odd IDs map to hidden A; even IDs map to hidden B."
+}

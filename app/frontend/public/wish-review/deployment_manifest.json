@@ -1,0 +1,30 @@
+{
+  "artifact": "NeuroFHIR-Review frozen participant application",
+  "deployment_subpath": "/wish-review/",
+  "target_url": "https://sanghati23.github.io/neurofhir-qc/wish-review/",
+  "source_directory": "/content/drive/MyDrive/neurofhir-qc/wish_extension/final_wish_pilot/participant_app",
+  "source_file_count": 14,
+  "source_sha256": {
+    "assets/WISH-01.png": "1d75b9cf9789c3461471fe0a88cc388efb7a80ee70f526f39c2fbfeb5f478dee",
+    "assets/WISH-02.png": "5f22bcd9e8834ee7c0ee073558c69737a1cc7a53fe175c22e4e83a9e8743ff5e",
+    "assets/WISH-03.png": "3e85914cb68581337fc96d6b64e734060255226b6adbbe4f0f88fb602aa8ffb6",
+    "assets/WISH-04.png": "eb3279029b03dd39e1c606ea79211f7a1680fcb38003f035795f5a4a35ebe2d0",
+    "assets/WISH-05.png": "5a2156613934241fca6a9d28fe5fc9660ce67087d2641ec3013b676af6b07be2",
+    "assets/WISH-06.png": "9e0be6645afbd9bfe41e2f98eec1b75769795cc137239d68af1a6b471445f3fe",
+    "assets/WISH-07.png": "6810f9d99cc070adfd95aa906c7d6cfcc53890005bc1e815f86718e57105b99f",
+    "assets/WISH-08.png": "4acec8aff85dd20f6c4037e5fab8efb1b6a6a3eedddd773c3a1e5ac3a03b0812",
+    "assets/WISH-09.png": "d338de121bc0f8bd829e1c7deffa08941e3e9f051ffd268360e4c2edb589ef90",
+    "assets/WISH-10.png": "6a55103303bdc9f65ceda5c911c742a0c8b38971ec0b1b14f7c338296f13e42c",
+    "assets/WISH-11.png": "7fce1cff276397c6c007685a736921495a7cb5a53e8ae016297cf8c74ad75f12",
+    "assets/WISH-12.png": "2a0234cb87c8944baff8c34575108486076d39e19c8b26753b7a1e6e8196dda4",
+    "index.html": "40ed5f33e47ddea1716f4c63626c158156fdd613d177a489bbfa825e72264e29",
+    "participant_cases.json": "191620f49d7e71670b8888e746ea4e268a4fe4b77065c893651ba04cddfd7519"
+  },
+  "researcher_only_deployed": false,
+  "qa_participant_ids_reserved": [
+    "P001",
+    "P002"
+  ],
+  "recommended_first_real_participant_id": "P003",
+  "generated_utc": "2026-09-11T15:37:55.474271+00:00"
+}
