@@ -33,8 +33,546 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0f1720;color:#d7edf2
 footer{text-align:center;color:#6a7b85;font-size:12px;margin-top:24px}
 @media(max-width:760px){header{display:block}.steps{grid-template-columns:repeat(3,1fr)}}
 </style>
+
+<!-- NF_UI_FACELIFT_STYLE_BEGIN -->
+<style id="nf-wish-professional-ui">
+:root {
+  --nf-navy-950: #071b2c;
+  --nf-navy-900: #0b253b;
+  --nf-navy-800: #123b56;
+  --nf-teal-700: #0f6d78;
+  --nf-teal-600: #16818d;
+  --nf-teal-100: #e8f5f6;
+  --nf-blue-100: #edf5fb;
+  --nf-slate-900: #182431;
+  --nf-slate-700: #475868;
+  --nf-slate-600: #607181;
+  --nf-slate-500: #748492;
+  --nf-slate-300: #ccd6de;
+  --nf-slate-200: #dde5eb;
+  --nf-slate-100: #edf2f6;
+  --nf-slate-050: #f6f8fb;
+  --nf-white: #ffffff;
+  --nf-warning-bg: #fff8e8;
+  --nf-warning-border: #e7c96d;
+  --nf-danger-bg: #fff2f1;
+  --nf-danger-border: #dfaaa5;
+  --nf-success-bg: #eef8f3;
+  --nf-success-border: #afd9c4;
+  --nf-shadow-sm: 0 1px 2px rgba(7,27,44,.05), 0 1px 5px rgba(7,27,44,.04);
+  --nf-shadow-md: 0 10px 30px rgba(7,27,44,.08), 0 2px 8px rgba(7,27,44,.05);
+  --nf-radius-sm: 8px;
+  --nf-radius-md: 12px;
+  --nf-radius-lg: 18px;
+  --nf-content: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--nf-slate-050);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 !important;
+  min-height: 100vh;
+  color: var(--nf-slate-900);
+  background:
+    radial-gradient(circle at 10% -10%, rgba(22,129,141,.08), transparent 28rem),
+    linear-gradient(180deg, #f8fafc 0%, #f4f7fa 100%) !important;
+  font-family:
+    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Product header ---------- */
+#nf-study-shell {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: linear-gradient(120deg, var(--nf-navy-950), var(--nf-navy-800));
+  color: var(--nf-white);
+  box-shadow: 0 8px 24px rgba(7,27,44,.14);
+}
+
+.nf-shell-inner {
+  max-width: var(--nf-content);
+  margin: 0 auto;
+  padding: 18px 28px 15px;
+}
+
+.nf-shell-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.nf-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.nf-mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+}
+
+.nf-brand-copy { min-width: 0; }
+
+.nf-brand-title {
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -.015em;
+}
+
+.nf-brand-subtitle {
+  margin-top: 3px;
+  color: rgba(255,255,255,.72);
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nf-study-badge {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: rgba(255,255,255,.91);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+
+.nf-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.nf-progress-track {
+  position: relative;
+  flex: 1;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+}
+
+#nf-progress-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: #7fd8dd;
+  transition: width .25s ease;
+}
+
+#nf-progress-label {
+  min-width: 88px;
+  text-align: right;
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Main app layout ---------- */
+body > :not(#nf-study-shell):not(#nf-study-footer) {
+  max-width: var(--nf-content);
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+main,
+[role="main"],
+.nf-main {
+  width: min(var(--nf-content), calc(100% - 40px));
+  margin: 28px auto 44px !important;
+}
+
+h1, h2, h3, h4 {
+  color: var(--nf-navy-900);
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 760;
+}
+
+h2 {
+  font-size: clamp(20px, 2.2vw, 25px);
+  font-weight: 730;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 720;
+}
+
+p { color: var(--nf-slate-700); }
+
+/* ---------- Cards / panels ---------- */
+.nf-section-card,
+section,
+article,
+fieldset,
+.card,
+.panel {
+  border-radius: var(--nf-radius-lg);
+}
+
+.nf-section-card {
+  margin: 18px 0 !important;
+  padding: 22px 24px !important;
+  background: rgba(255,255,255,.96) !important;
+  border: 1px solid var(--nf-slate-200) !important;
+  box-shadow: var(--nf-shadow-sm) !important;
+}
+
+.nf-section-card > :first-child { margin-top: 0 !important; }
+.nf-section-card > :last-child { margin-bottom: 0 !important; }
+
+.nf-card-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  padding: 5px 8px;
+  border-radius: 7px;
+  color: var(--nf-teal-700);
+  background: var(--nf-teal-100);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+/* The AI card is intentionally not visually louder than the evidence card. */
+.nf-ai-card,
+.nf-evidence-card,
+.nf-passport-card,
+.nf-judgment-card,
+.nf-final-card {
+  border-left: 4px solid var(--nf-slate-300) !important;
+}
+
+.nf-ai-card { border-left-color: #8aa6b8 !important; }
+.nf-evidence-card { border-left-color: var(--nf-teal-600) !important; }
+.nf-passport-card { border-left-color: #6f8ca3 !important; }
+.nf-judgment-card { border-left-color: #8e9fb0 !important; }
+.nf-final-card { border-left-color: var(--nf-navy-800) !important; }
+
+/* ---------- Clinical metadata ---------- */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--nf-white);
+  border: 1px solid var(--nf-slate-200);
+  border-radius: var(--nf-radius-md);
+}
+
+th, td {
+  padding: 11px 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--nf-slate-100);
+  vertical-align: top;
+}
+
+th {
+  color: var(--nf-slate-700);
+  background: #f7f9fb;
+  font-size: 12px;
+  font-weight: 720;
+}
+
+tr:last-child td { border-bottom: 0; }
+
+pre, code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+pre {
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--nf-slate-200);
+  border-radius: var(--nf-radius-md);
+  color: #243746;
+  background: #f7f9fb;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* ---------- Imaging / evidence ---------- */
+img, canvas, svg {
+  max-width: 100%;
+}
+
+img {
+  border-radius: 12px;
+}
+
+.nf-section-card img,
+.nf-section-card canvas {
+  box-shadow: 0 0 0 1px rgba(7,27,44,.08), var(--nf-shadow-sm);
+}
+
+/* ---------- Forms ---------- */
+label {
+  color: var(--nf-slate-900);
+  font-weight: 610;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #bcc9d3;
+  border-radius: 10px;
+  color: var(--nf-slate-900);
+  background: var(--nf-white);
+  font: inherit;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--nf-teal-600);
+  box-shadow: 0 0 0 3px rgba(22,129,141,.12);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--nf-teal-700);
+  width: 17px;
+  height: 17px;
+}
+
+fieldset {
+  margin: 16px 0;
+  padding: 17px 18px;
+  border: 1px solid var(--nf-slate-200);
+  background: #fbfcfd;
+}
+
+legend {
+  padding: 0 6px;
+  color: var(--nf-navy-900);
+  font-weight: 700;
+}
+
+/* ---------- Buttons ---------- */
+button,
+input[type="button"],
+input[type="submit"] {
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--nf-white);
+  background: var(--nf-navy-800);
+  font: inherit;
+  font-weight: 680;
+  letter-spacing: -.005em;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(7,27,44,.08);
+  transition:
+    transform .08s ease,
+    box-shadow .15s ease,
+    background-color .15s ease,
+    border-color .15s ease;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background: var(--nf-navy-900);
+  box-shadow: 0 4px 12px rgba(7,27,44,.12);
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(22,129,141,.28);
+  outline-offset: 2px;
+}
+
+button:disabled,
+input[type="submit"]:disabled {
+  cursor: not-allowed;
+  opacity: .48;
+  box-shadow: none;
+}
+
+.nf-secondary-button {
+  color: var(--nf-navy-800) !important;
+  background: var(--nf-white) !important;
+  border-color: #b8c6d0 !important;
+}
+
+.nf-secondary-button:hover {
+  background: var(--nf-slate-050) !important;
+  border-color: #90a5b5 !important;
+}
+
+/* ---------- Status / callout styling ---------- */
+[role="alert"],
+.alert,
+.warning,
+.error,
+.success,
+.notice {
+  padding: 13px 15px;
+  border-radius: 10px;
+}
+
+.warning { background: var(--nf-warning-bg); border: 1px solid var(--nf-warning-border); }
+.error { background: var(--nf-danger-bg); border: 1px solid var(--nf-danger-border); }
+.success { background: var(--nf-success-bg); border: 1px solid var(--nf-success-border); }
+
+/* ---------- Research footer ---------- */
+#nf-study-footer {
+  max-width: none !important;
+  margin: 50px 0 0 !important;
+  padding: 0 24px 26px;
+}
+
+.nf-footer-inner {
+  max-width: var(--nf-content);
+  margin: 0 auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--nf-slate-200);
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--nf-slate-500);
+  font-size: 11.5px;
+}
+
+.nf-footer-inner strong {
+  color: var(--nf-slate-700);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .nf-shell-inner { padding: 14px 16px 12px; }
+  .nf-shell-top { align-items: flex-start; }
+  .nf-brand-subtitle { white-space: normal; }
+  .nf-study-badge { display: none; }
+
+  body > :not(#nf-study-shell):not(#nf-study-footer) {
+    max-width: calc(100% - 22px);
+  }
+
+  main,
+  [role="main"],
+  .nf-main {
+    width: calc(100% - 22px);
+    margin-top: 16px !important;
+  }
+
+  .nf-section-card {
+    padding: 17px 15px !important;
+    border-radius: 14px;
+  }
+
+  .nf-footer-inner { flex-direction: column; gap: 6px; }
+}
+
+@media (max-width: 480px) {
+  .nf-mark { width: 36px; height: 36px; flex-basis: 36px; }
+  .nf-brand-title { font-size: 16px; }
+  .nf-brand-subtitle { font-size: 11.5px; }
+  #nf-progress-label { min-width: 70px; }
+  button,
+  input[type="button"],
+  input[type="submit"] { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media print {
+  #nf-study-shell,
+  #nf-study-footer { display: none !important; }
+  body { background: #fff !important; }
+  .nf-section-card { box-shadow: none !important; }
+}
+</style>
+<!-- NF_UI_FACELIFT_STYLE_END -->
 </head>
 <body>
+<!-- NF_UI_FACELIFT_HEADER_BEGIN -->
+<header id="nf-study-shell" aria-label="NeuroFHIR-Review study header">
+  <div class="nf-shell-inner">
+    <div class="nf-shell-top">
+      <div class="nf-brand">
+        <div class="nf-mark" aria-hidden="true">NF</div>
+        <div class="nf-brand-copy">
+          <div class="nf-brand-title">NeuroFHIR-Review</div>
+          <div class="nf-brand-subtitle">Longitudinal neuroimaging evidence · uncertainty · provenance · accountable review</div>
+        </div>
+      </div>
+      <div class="nf-study-badge">Research prototype · 12-case review</div>
+    </div>
+    <div class="nf-progress-wrap" aria-label="Case progress">
+      <div class="nf-progress-track" aria-hidden="true">
+        <div id="nf-progress-fill"></div>
+      </div>
+      <div id="nf-progress-label">Review session</div>
+    </div>
+  </div>
+</header>
+<!-- NF_UI_FACELIFT_HEADER_END -->
+
 <main class="shell">
 <header>
 <div><div class="eyebrow">Formative research study</div><h1>NeuroFHIR-Review</h1><div class="muted">Longitudinal neuroimaging evidence review</div></div>
@@ -206,5 +744,176 @@ function render(){
 }
 fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(e=>{q("#app").innerHTML="<b>Failed to load study data:</b> "+esc(e)})
 </script>
+
+<!-- NF_UI_FACELIFT_FOOTER_BEGIN -->
+<footer id="nf-study-footer">
+  <div class="nf-footer-inner">
+    <div><strong>NeuroFHIR-Review</strong> · formative human–AI research workflow</div>
+    <div>Research prototype · not for patient care or diagnostic use</div>
+  </div>
+</footer>
+<!-- NF_UI_FACELIFT_FOOTER_END -->
+
+<!-- NF_UI_FACELIFT_SCRIPT_BEGIN -->
+<script id="nf-wish-professional-ui-script">
+(function () {
+  "use strict";
+
+  function textOf(el) {
+    return (el && el.textContent ? el.textContent : "").replace(/\s+/g, " ").trim();
+  }
+
+  function nearestCardCandidate(el) {
+    if (!el) return null;
+    return el.closest(
+      "section, article, fieldset, form, .card, .panel, .section, .content, .step, div"
+    );
+  }
+
+  function decorateSections() {
+    var headings = document.querySelectorAll("h1,h2,h3,h4,[role='heading']");
+    headings.forEach(function (h) {
+      var t = textOf(h).toLowerCase();
+      var card = nearestCardCandidate(h);
+
+      if (!card || card.id === "nf-study-shell" || card.id === "nf-study-footer") return;
+
+      var matched = false;
+
+      if (t.includes("case brief") || t === "case") {
+        card.classList.add("nf-section-card", "nf-evidence-card");
+        matched = true;
+      } else if (t.includes("evidence passport") || t.includes("provenance")) {
+        card.classList.add("nf-section-card", "nf-passport-card");
+        matched = true;
+      } else if (t.includes("initial judgment")) {
+        card.classList.add("nf-section-card", "nf-judgment-card");
+        matched = true;
+      } else if (
+        t.includes("ai recommendation") ||
+        t.includes("ai review") ||
+        t.includes("ai evidence")
+      ) {
+        card.classList.add("nf-section-card", "nf-ai-card");
+        matched = true;
+      } else if (t.includes("final action") || t.includes("final decision")) {
+        card.classList.add("nf-section-card", "nf-final-card");
+        matched = true;
+      } else if (
+        t.includes("evidence") ||
+        t.includes("mri") ||
+        t.includes("longitudinal") ||
+        t.includes("review complete")
+      ) {
+        card.classList.add("nf-section-card", "nf-evidence-card");
+        matched = true;
+      }
+
+      if (matched && !card.querySelector(":scope > .nf-card-eyebrow")) {
+        var eyebrow = document.createElement("div");
+        eyebrow.className = "nf-card-eyebrow";
+        eyebrow.setAttribute("aria-hidden", "true");
+
+        if (card.classList.contains("nf-ai-card")) eyebrow.textContent = "AI evidence";
+        else if (card.classList.contains("nf-passport-card")) eyebrow.textContent = "Evidence provenance";
+        else if (card.classList.contains("nf-judgment-card")) eyebrow.textContent = "Reviewer judgment";
+        else if (card.classList.contains("nf-final-card")) eyebrow.textContent = "Final disposition";
+        else eyebrow.textContent = "Case evidence";
+
+        card.insertBefore(eyebrow, card.firstChild);
+      }
+    });
+  }
+
+  function decorateButtons() {
+    document.querySelectorAll("button,input[type='button'],input[type='submit']").forEach(function (b) {
+      var t = ((b.value || "") + " " + textOf(b)).toLowerCase();
+      if (
+        t.includes("back") ||
+        t.includes("previous") ||
+        t.includes("download") ||
+        t.includes("export")
+      ) {
+        b.classList.add("nf-secondary-button");
+      }
+    });
+  }
+
+  function updateProgress() {
+    var bodyText = textOf(document.body);
+
+    var patterns = [
+      /case\s+(\d+)\s+of\s+(\d+)/i,
+      /case\s+(\d+)\s*\/\s*(\d+)/i,
+      /(\d+)\s+of\s+(\d+)\s+cases?/i
+    ];
+
+    var match = null;
+    for (var i = 0; i < patterns.length; i++) {
+      match = bodyText.match(patterns[i]);
+      if (match) break;
+    }
+
+    var fill = document.getElementById("nf-progress-fill");
+    var label = document.getElementById("nf-progress-label");
+    if (!fill || !label) return;
+
+    if (match) {
+      var current = Math.max(1, parseInt(match[1], 10));
+      var total = Math.max(current, parseInt(match[2], 10));
+      var pct = Math.min(100, Math.max(0, (current / total) * 100));
+      fill.style.width = pct + "%";
+      label.textContent = "Case " + current + " of " + total;
+    } else if (/review complete/i.test(bodyText)) {
+      fill.style.width = "100%";
+      label.textContent = "Complete";
+    } else {
+      fill.style.width = "0%";
+      label.textContent = "12-case review";
+    }
+  }
+
+  function accessibilityPass() {
+    document.querySelectorAll("button").forEach(function (b) {
+      if (!b.getAttribute("type")) b.setAttribute("type", "button");
+    });
+
+    document.querySelectorAll("textarea").forEach(function (el) {
+      if (!el.getAttribute("spellcheck")) el.setAttribute("spellcheck", "true");
+    });
+  }
+
+  function applyVisualEnhancements() {
+    decorateSections();
+    decorateButtons();
+    updateProgress();
+    accessibilityPass();
+  }
+
+  var queued = false;
+  function scheduleApply() {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(function () {
+      queued = false;
+      applyVisualEnhancements();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyVisualEnhancements, { once: true });
+  } else {
+    applyVisualEnhancements();
+  }
+
+  var observer = new MutationObserver(scheduleApply);
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true
+  });
+})();
+</script>
+<!-- NF_UI_FACELIFT_SCRIPT_END -->
 </body>
 </html>
