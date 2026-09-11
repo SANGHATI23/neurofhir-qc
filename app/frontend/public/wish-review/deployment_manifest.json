@@ -17,7 +17,7 @@
     "assets/WISH-10.png": "6a55103303bdc9f65ceda5c911c742a0c8b38971ec0b1b14f7c338296f13e42c",
     "assets/WISH-11.png": "7fce1cff276397c6c007685a736921495a7cb5a53e8ae016297cf8c74ad75f12",
     "assets/WISH-12.png": "2a0234cb87c8944baff8c34575108486076d39e19c8b26753b7a1e6e8196dda4",
-    "index.html": "0600d1ad3fb6706fcc322dc6407d4b8ab54a3acf7cd176b2b833178bc604c4c3",
+    "index.html": "5d1e7d046dbe4dc248204dc7dead6f000f28f3d3c7942c05c610b180585e7a64",
     "participant_cases.json": "191620f49d7e71670b8888e746ea4e268a4fe4b77065c893651ba04cddfd7519"
   },
   "researcher_only_deployed": false,
@@ -26,5 +26,5 @@
     "P002"
   ],
   "recommended_first_real_participant_id": "P003",
-  "generated_utc": "2026-09-11T16:46:39.060262+00:00"
+  "generated_utc": "2026-09-11T17:24:31.497280+00:00"
 }
