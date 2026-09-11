@@ -34,318 +34,567 @@ footer{text-align:center;color:#6a7b85;font-size:12px;margin-top:24px}
 @media(max-width:760px){header{display:block}.steps{grid-template-columns:repeat(3,1fr)}}
 </style>
 
-<!-- NF_UI_FACELIFT_STYLE_BEGIN -->
-<style id="nf-wish-professional-ui">
+<!-- NF_UI_COCKPIT_STYLE_BEGIN -->
+<style id="nf-evidence-cockpit-style">
 :root {
-  --nf-navy-950: #071b2c;
-  --nf-navy-900: #0b253b;
-  --nf-navy-800: #123b56;
-  --nf-teal-700: #0f6d78;
-  --nf-teal-600: #16818d;
-  --nf-teal-100: #e8f5f6;
-  --nf-blue-100: #edf5fb;
-  --nf-slate-900: #182431;
-  --nf-slate-700: #475868;
-  --nf-slate-600: #607181;
-  --nf-slate-500: #748492;
-  --nf-slate-300: #ccd6de;
-  --nf-slate-200: #dde5eb;
-  --nf-slate-100: #edf2f6;
-  --nf-slate-050: #f6f8fb;
-  --nf-white: #ffffff;
-  --nf-warning-bg: #fff8e8;
-  --nf-warning-border: #e7c96d;
-  --nf-danger-bg: #fff2f1;
-  --nf-danger-border: #dfaaa5;
-  --nf-success-bg: #eef8f3;
-  --nf-success-border: #afd9c4;
-  --nf-shadow-sm: 0 1px 2px rgba(7,27,44,.05), 0 1px 5px rgba(7,27,44,.04);
-  --nf-shadow-md: 0 10px 30px rgba(7,27,44,.08), 0 2px 8px rgba(7,27,44,.05);
-  --nf-radius-sm: 8px;
-  --nf-radius-md: 12px;
-  --nf-radius-lg: 18px;
-  --nf-content: 1180px;
+  --nf-left: 236px;
+  --nf-right: 292px;
+  --nf-top: 72px;
+
+  --ink-950: #0b1721;
+  --ink-900: #122330;
+  --ink-800: #203645;
+  --ink-700: #3f5361;
+  --ink-600: #5a6d79;
+  --ink-500: #748592;
+
+  --navy-950: #071923;
+  --navy-900: #0a2433;
+  --navy-850: #0d2d3e;
+  --teal-700: #0b6e78;
+  --teal-600: #12818b;
+  --teal-500: #2c98a0;
+  --teal-100: #e5f4f4;
+  --blue-100: #eaf2f8;
+
+  --line-300: #c7d2d9;
+  --line-200: #dbe3e8;
+  --line-100: #eaf0f3;
+  --surface: #ffffff;
+  --surface-2: #f6f8fa;
+  --surface-3: #eef3f6;
+
+  --shadow-1: 0 1px 2px rgba(10,36,51,.05), 0 2px 8px rgba(10,36,51,.04);
+  --shadow-2: 0 12px 35px rgba(10,36,51,.08), 0 2px 10px rgba(10,36,51,.05);
+
+  --radius-sm: 9px;
+  --radius-md: 13px;
+  --radius-lg: 18px;
 }
 
 * { box-sizing: border-box; }
 
 html {
-  background: var(--nf-slate-050);
-  scroll-behavior: smooth;
+  min-height: 100%;
+  background: #f1f5f7;
 }
 
 body {
-  margin: 0 !important;
   min-height: 100vh;
-  color: var(--nf-slate-900);
+  margin: 0 !important;
+  padding:
+    calc(var(--nf-top) + 26px)
+    calc(var(--nf-right) + 30px)
+    46px
+    calc(var(--nf-left) + 30px) !important;
+  color: var(--ink-950);
   background:
-    radial-gradient(circle at 10% -10%, rgba(22,129,141,.08), transparent 28rem),
-    linear-gradient(180deg, #f8fafc 0%, #f4f7fa 100%) !important;
+    radial-gradient(circle at 30% -5%, rgba(18,129,139,.055), transparent 28rem),
+    #f3f6f8 !important;
   font-family:
     Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif !important;
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* ---------- Product header ---------- */
-#nf-study-shell {
-  position: sticky;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
-  background: linear-gradient(120deg, var(--nf-navy-950), var(--nf-navy-800));
-  color: var(--nf-white);
-  box-shadow: 0 8px 24px rgba(7,27,44,.14);
+/* ================= LEFT CASE RAIL ================= */
+#nf-cockpit-left {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 10000;
+  width: var(--nf-left);
+  padding: 20px 16px 18px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, #071923 0%, #0a2635 58%, #0c2d3c 100%);
+  border-right: 1px solid rgba(255,255,255,.07);
+  box-shadow: 8px 0 26px rgba(7,25,35,.08);
+  overflow-y: auto;
 }
 
-.nf-shell-inner {
-  max-width: var(--nf-content);
-  margin: 0 auto;
-  padding: 18px 28px 15px;
-}
-
-.nf-shell-top {
+.nf-brand-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 11px;
+  padding: 1px 2px 18px;
 }
 
-.nf-brand {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  min-width: 0;
-}
-
-.nf-mark {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
+.nf-brand-mark {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
   display: grid;
   place-items: center;
-  border-radius: 12px;
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.18);
-  font-weight: 800;
-  letter-spacing: -.04em;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 11px;
+  background: rgba(255,255,255,.07);
+  color: #ddfbfb;
+  font-size: 13px;
+  font-weight: 820;
+  letter-spacing: -.025em;
 }
 
-.nf-brand-copy { min-width: 0; }
-
-.nf-brand-title {
-  font-size: 18px;
-  font-weight: 750;
-  line-height: 1.15;
-  letter-spacing: -.015em;
+.nf-brand-name {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 760;
+  line-height: 1.1;
+  letter-spacing: -.01em;
 }
 
-.nf-brand-subtitle {
+.nf-brand-mode {
+  margin-top: 4px;
+  color: rgba(255,255,255,.53);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.nf-rail-section {
+  padding: 16px 2px;
+  border-top: 1px solid rgba(255,255,255,.09);
+}
+
+.nf-rail-label {
+  margin-bottom: 10px;
+  color: rgba(255,255,255,.45);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.nf-case-large {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 13px;
+}
+
+#nf-case-current {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 760;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.nf-case-total {
+  color: rgba(255,255,255,.43);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.nf-case-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.nf-case-dot {
+  height: 29px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: rgba(255,255,255,.42);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.07);
+  font-size: 10px;
+  font-weight: 720;
+  font-variant-numeric: tabular-nums;
+}
+
+.nf-case-dot.is-past {
+  color: #bfe6e7;
+  background: rgba(44,152,160,.10);
+  border-color: rgba(90,190,197,.18);
+}
+
+.nf-case-dot.is-current {
+  color: #071923;
+  background: #9ae1e4;
+  border-color: #9ae1e4;
+  box-shadow: 0 4px 14px rgba(80,190,196,.20);
+}
+
+.nf-stage-now {
+  position: relative;
+  padding: 11px 11px 11px 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 11px;
+  background: rgba(255,255,255,.055);
+}
+
+.nf-stage-now::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  border-radius: 3px;
+  background: #7ed8dc;
+}
+
+#nf-left-stage {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nf-stage-sub {
+  margin-top: 4px;
+  color: rgba(255,255,255,.48);
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.nf-rail-foot {
+  margin-top: 4px;
+  color: rgba(255,255,255,.35);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* ================= TOP CONTEXT BAR ================= */
+#nf-cockpit-top {
+  position: fixed;
+  top: 0;
+  left: var(--nf-left);
+  right: var(--nf-right);
+  z-index: 9999;
+  height: var(--nf-top);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 28px;
+  background: rgba(255,255,255,.94);
+  border-bottom: 1px solid var(--line-200);
+  box-shadow: 0 3px 14px rgba(10,36,51,.035);
+  backdrop-filter: blur(12px);
+}
+
+.nf-top-context {
+  min-width: 0;
+  flex: 1;
+}
+
+.nf-top-eyebrow {
+  color: var(--teal-700);
+  font-size: 10px;
+  font-weight: 780;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+#nf-top-stage {
   margin-top: 3px;
-  color: rgba(255,255,255,.72);
-  font-size: 12.5px;
+  color: var(--ink-900);
+  font-size: 17px;
+  font-weight: 740;
+  letter-spacing: -.015em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.nf-study-badge {
-  flex: 0 0 auto;
-  padding: 7px 10px;
-  border-radius: 999px;
-  color: rgba(255,255,255,.91);
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.16);
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: .01em;
+.nf-top-progress {
+  min-width: 210px;
+  max-width: 280px;
+  flex: 0 1 280px;
 }
 
-.nf-progress-wrap {
+.nf-progress-meta {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 14px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  color: var(--ink-500);
+  font-size: 10.5px;
 }
 
 .nf-progress-track {
-  position: relative;
-  flex: 1;
   height: 5px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(255,255,255,.14);
+  background: var(--line-100);
 }
 
 #nf-progress-fill {
   width: 0%;
   height: 100%;
   border-radius: inherit;
-  background: #7fd8dd;
-  transition: width .25s ease;
+  background: linear-gradient(90deg, var(--teal-700), #48aeb4);
+  transition: width .22s ease;
 }
 
-#nf-progress-label {
-  min-width: 88px;
+.nf-prototype-pill {
+  flex: 0 0 auto;
+  padding: 7px 9px;
+  border: 1px solid var(--line-200);
+  border-radius: 999px;
+  color: var(--ink-600);
+  background: var(--surface-2);
+  font-size: 10px;
+  font-weight: 680;
+}
+
+/* ================= RIGHT REVIEW CONSOLE ================= */
+#nf-cockpit-right {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 9998;
+  width: var(--nf-right);
+  padding: calc(var(--nf-top) + 18px) 18px 20px;
+  color: var(--ink-900);
+  background: #fafcfd;
+  border-left: 1px solid var(--line-200);
+  overflow-y: auto;
+}
+
+.nf-console-title {
+  margin-bottom: 3px;
+  color: var(--ink-900);
+  font-size: 13px;
+  font-weight: 770;
+  letter-spacing: -.01em;
+}
+
+.nf-console-subtitle {
+  margin-bottom: 18px;
+  color: var(--ink-500);
+  font-size: 10.5px;
+}
+
+.nf-console-card {
+  margin-bottom: 12px;
+  padding: 14px;
+  border: 1px solid var(--line-200);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: var(--shadow-1);
+}
+
+.nf-console-card-title {
+  margin-bottom: 10px;
+  color: var(--ink-500);
+  font-size: 9.5px;
+  font-weight: 780;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.nf-kv {
+  display: grid;
+  grid-template-columns: 78px minmax(0,1fr);
+  gap: 8px;
+  padding: 7px 0;
+  border-top: 1px solid var(--line-100);
+  font-size: 10.5px;
+}
+
+.nf-kv:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.nf-k {
+  color: var(--ink-500);
+  font-weight: 620;
+}
+
+.nf-v {
+  color: var(--ink-900);
+  font-weight: 680;
   text-align: right;
-  color: rgba(255,255,255,.72);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
+  word-break: break-word;
 }
 
-/* ---------- Main app layout ---------- */
-body > :not(#nf-study-shell):not(#nf-study-footer) {
-  max-width: var(--nf-content);
+#nf-visible-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nf-evidence-chip {
+  padding: 5px 7px;
+  border: 1px solid #d3e2e7;
+  border-radius: 7px;
+  color: #34515e;
+  background: #f1f7f8;
+  font-size: 9.5px;
+  font-weight: 690;
+}
+
+.nf-console-rule {
+  color: var(--ink-600);
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+
+.nf-safeguard {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  margin-top: 8px;
+  color: var(--ink-600);
+  font-size: 9.8px;
+  line-height: 1.45;
+}
+
+.nf-safeguard:first-of-type { margin-top: 0; }
+
+.nf-safeguard-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--teal-500);
+}
+
+/* ================= CENTER EVIDENCE WORKSPACE ================= */
+body > :not([data-nf-cockpit]) {
+  max-width: 1180px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-main,
-[role="main"],
-.nf-main {
-  width: min(var(--nf-content), calc(100% - 40px));
-  margin: 28px auto 44px !important;
+body > div:not([data-nf-cockpit]),
+body > main:not([data-nf-cockpit]) {
+  width: 100% !important;
 }
 
 h1, h2, h3, h4 {
-  color: var(--nf-navy-900);
-  line-height: 1.25;
-  letter-spacing: -.02em;
+  color: var(--ink-900);
+  line-height: 1.22;
+  letter-spacing: -.022em;
 }
 
 h1 {
   margin-top: 0;
-  font-size: clamp(25px, 3vw, 34px);
-  font-weight: 760;
+  font-size: clamp(25px,2.7vw,33px);
+  font-weight: 770;
 }
 
 h2 {
-  font-size: clamp(20px, 2.2vw, 25px);
-  font-weight: 730;
+  font-size: clamp(20px,2.1vw,25px);
+  font-weight: 740;
 }
 
 h3 {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 720;
 }
 
-p { color: var(--nf-slate-700); }
+p { color: var(--ink-700); }
 
-/* ---------- Cards / panels ---------- */
-.nf-section-card,
-section,
-article,
-fieldset,
-.card,
-.panel {
-  border-radius: var(--nf-radius-lg);
+.nf-auto-panel {
+  margin: 15px 0 !important;
+  padding: 21px 22px !important;
+  border: 1px solid var(--line-200) !important;
+  border-radius: var(--radius-lg) !important;
+  background: rgba(255,255,255,.97) !important;
+  box-shadow: var(--shadow-1) !important;
 }
 
-.nf-section-card {
-  margin: 18px 0 !important;
-  padding: 22px 24px !important;
-  background: rgba(255,255,255,.96) !important;
-  border: 1px solid var(--nf-slate-200) !important;
-  box-shadow: var(--nf-shadow-sm) !important;
+.nf-auto-panel > :first-child { margin-top: 0 !important; }
+.nf-auto-panel > :last-child { margin-bottom: 0 !important; }
+
+.nf-panel-evidence {
+  border-top: 3px solid var(--teal-600) !important;
 }
 
-.nf-section-card > :first-child { margin-top: 0 !important; }
-.nf-section-card > :last-child { margin-bottom: 0 !important; }
+.nf-panel-ai {
+  /* Deliberately restrained: AI is not visually privileged. */
+  border-top: 3px solid #7a94a5 !important;
+}
 
-.nf-card-eyebrow {
+.nf-panel-provenance {
+  border-top: 3px solid #607f91 !important;
+}
+
+.nf-panel-decision {
+  border-top: 3px solid #314f61 !important;
+}
+
+.nf-panel-complete {
+  border-top: 3px solid #3b8e79 !important;
+}
+
+.nf-panel-label {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
   margin-bottom: 10px;
-  padding: 5px 8px;
-  border-radius: 7px;
-  color: var(--nf-teal-700);
-  background: var(--nf-teal-100);
-  font-size: 11px;
-  font-weight: 750;
-  letter-spacing: .055em;
+  padding: 4px 7px;
+  border: 1px solid #dbe5ea;
+  border-radius: 6px;
+  color: var(--ink-600);
+  background: #f7fafb;
+  font-size: 9px;
+  font-weight: 780;
+  letter-spacing: .08em;
   text-transform: uppercase;
 }
 
-/* The AI card is intentionally not visually louder than the evidence card. */
-.nf-ai-card,
-.nf-evidence-card,
-.nf-passport-card,
-.nf-judgment-card,
-.nf-final-card {
-  border-left: 4px solid var(--nf-slate-300) !important;
+/* Imaging should feel like the evidence workspace, not a thumbnail page. */
+.nf-auto-panel img,
+.nf-auto-panel canvas {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(10,36,51,.10),
+    0 6px 18px rgba(10,36,51,.07);
 }
 
-.nf-ai-card { border-left-color: #8aa6b8 !important; }
-.nf-evidence-card { border-left-color: var(--nf-teal-600) !important; }
-.nf-passport-card { border-left-color: #6f8ca3 !important; }
-.nf-judgment-card { border-left-color: #8e9fb0 !important; }
-.nf-final-card { border-left-color: var(--nf-navy-800) !important; }
+img, canvas, svg { max-width: 100%; }
 
-/* ---------- Clinical metadata ---------- */
+/* Data */
 table {
   width: 100%;
+  overflow: hidden;
   border-collapse: separate;
   border-spacing: 0;
-  overflow: hidden;
-  background: var(--nf-white);
-  border: 1px solid var(--nf-slate-200);
-  border-radius: var(--nf-radius-md);
+  border: 1px solid var(--line-200);
+  border-radius: 12px;
+  background: #fff;
 }
 
 th, td {
-  padding: 11px 13px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-100);
   text-align: left;
-  border-bottom: 1px solid var(--nf-slate-100);
   vertical-align: top;
 }
 
 th {
-  color: var(--nf-slate-700);
-  background: #f7f9fb;
-  font-size: 12px;
-  font-weight: 720;
+  color: var(--ink-600);
+  background: #f7f9fa;
+  font-size: 10.5px;
+  font-weight: 730;
 }
 
 tr:last-child td { border-bottom: 0; }
 
-pre, code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-}
-
 pre {
   overflow: auto;
-  padding: 16px;
-  border: 1px solid var(--nf-slate-200);
-  border-radius: var(--nf-radius-md);
-  color: #243746;
-  background: #f7f9fb;
-  font-size: 12.5px;
+  padding: 14px;
+  border: 1px solid var(--line-200);
+  border-radius: 11px;
+  color: #27404f;
+  background: #f5f8fa;
+  font-size: 11.5px;
   line-height: 1.5;
 }
 
-/* ---------- Imaging / evidence ---------- */
-img, canvas, svg {
-  max-width: 100%;
-}
-
-img {
-  border-radius: 12px;
-}
-
-.nf-section-card img,
-.nf-section-card canvas {
-  box-shadow: 0 0 0 1px rgba(7,27,44,.08), var(--nf-shadow-sm);
-}
-
-/* ---------- Forms ---------- */
+/* Forms */
 label {
-  color: var(--nf-slate-900);
-  font-weight: 610;
+  color: var(--ink-900);
+  font-weight: 630;
 }
 
 input[type="text"],
@@ -353,18 +602,18 @@ input[type="number"],
 select,
 textarea {
   width: 100%;
-  padding: 11px 12px;
-  border: 1px solid #bcc9d3;
-  border-radius: 10px;
-  color: var(--nf-slate-900);
-  background: var(--nf-white);
+  padding: 10px 11px;
+  border: 1px solid #bccbd4;
+  border-radius: 9px;
+  color: var(--ink-900);
+  background: #fff;
   font: inherit;
-  outline: none;
+  outline: 0;
   transition: border-color .15s ease, box-shadow .15s ease;
 }
 
 textarea {
-  min-height: 112px;
+  min-height: 108px;
   resize: vertical;
 }
 
@@ -372,57 +621,53 @@ input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--nf-teal-600);
-  box-shadow: 0 0 0 3px rgba(22,129,141,.12);
+  border-color: var(--teal-600);
+  box-shadow: 0 0 0 3px rgba(18,129,139,.12);
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-  accent-color: var(--nf-teal-700);
   width: 17px;
   height: 17px;
+  accent-color: var(--teal-700);
 }
 
 fieldset {
-  margin: 16px 0;
-  padding: 17px 18px;
-  border: 1px solid var(--nf-slate-200);
+  margin: 15px 0;
+  padding: 16px;
+  border: 1px solid var(--line-200);
+  border-radius: 12px;
   background: #fbfcfd;
 }
 
 legend {
-  padding: 0 6px;
-  color: var(--nf-navy-900);
+  padding: 0 5px;
+  color: var(--ink-900);
   font-weight: 700;
 }
 
-/* ---------- Buttons ---------- */
+/* Buttons */
 button,
 input[type="button"],
 input[type="submit"] {
-  min-height: 42px;
-  padding: 10px 16px;
+  min-height: 41px;
+  padding: 9px 15px;
   border: 1px solid transparent;
-  border-radius: 10px;
-  color: var(--nf-white);
-  background: var(--nf-navy-800);
+  border-radius: 9px;
+  color: #fff;
+  background: #163e50;
   font: inherit;
   font-weight: 680;
-  letter-spacing: -.005em;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(7,27,44,.08);
-  transition:
-    transform .08s ease,
-    box-shadow .15s ease,
-    background-color .15s ease,
-    border-color .15s ease;
+  box-shadow: 0 1px 2px rgba(10,36,51,.08);
+  transition: background .15s ease, box-shadow .15s ease, transform .08s ease;
 }
 
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-  background: var(--nf-navy-900);
-  box-shadow: 0 4px 12px rgba(7,27,44,.12);
+  background: #0e3142;
+  box-shadow: 0 5px 14px rgba(10,36,51,.12);
 }
 
 button:active,
@@ -431,147 +676,278 @@ input[type="submit"]:active {
   transform: translateY(1px);
 }
 
+button:disabled,
+input[type="submit"]:disabled {
+  opacity: .48;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.nf-secondary-action {
+  color: #234555 !important;
+  background: #fff !important;
+  border-color: #bfcdd5 !important;
+}
+
+.nf-secondary-action:hover {
+  background: #f5f8fa !important;
+}
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 a:focus-visible {
-  outline: 3px solid rgba(22,129,141,.28);
+  outline: 3px solid rgba(18,129,139,.24);
   outline-offset: 2px;
 }
 
-button:disabled,
-input[type="submit"]:disabled {
-  cursor: not-allowed;
-  opacity: .48;
-  box-shadow: none;
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1220px) {
+  :root { --nf-right: 0px; }
+  #nf-cockpit-right { display: none; }
 }
 
-.nf-secondary-button {
-  color: var(--nf-navy-800) !important;
-  background: var(--nf-white) !important;
-  border-color: #b8c6d0 !important;
-}
-
-.nf-secondary-button:hover {
-  background: var(--nf-slate-050) !important;
-  border-color: #90a5b5 !important;
-}
-
-/* ---------- Status / callout styling ---------- */
-[role="alert"],
-.alert,
-.warning,
-.error,
-.success,
-.notice {
-  padding: 13px 15px;
-  border-radius: 10px;
-}
-
-.warning { background: var(--nf-warning-bg); border: 1px solid var(--nf-warning-border); }
-.error { background: var(--nf-danger-bg); border: 1px solid var(--nf-danger-border); }
-.success { background: var(--nf-success-bg); border: 1px solid var(--nf-success-border); }
-
-/* ---------- Research footer ---------- */
-#nf-study-footer {
-  max-width: none !important;
-  margin: 50px 0 0 !important;
-  padding: 0 24px 26px;
-}
-
-.nf-footer-inner {
-  max-width: var(--nf-content);
-  margin: 0 auto;
-  padding-top: 18px;
-  border-top: 1px solid var(--nf-slate-200);
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  color: var(--nf-slate-500);
-  font-size: 11.5px;
-}
-
-.nf-footer-inner strong {
-  color: var(--nf-slate-700);
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 760px) {
-  .nf-shell-inner { padding: 14px 16px 12px; }
-  .nf-shell-top { align-items: flex-start; }
-  .nf-brand-subtitle { white-space: normal; }
-  .nf-study-badge { display: none; }
-
-  body > :not(#nf-study-shell):not(#nf-study-footer) {
-    max-width: calc(100% - 22px);
+@media (max-width: 860px) {
+  :root {
+    --nf-left: 0px;
+    --nf-top: 64px;
   }
 
-  main,
-  [role="main"],
-  .nf-main {
-    width: calc(100% - 22px);
-    margin-top: 16px !important;
+  body {
+    padding:
+      calc(var(--nf-top) + 76px)
+      14px
+      30px
+      14px !important;
   }
 
-  .nf-section-card {
-    padding: 17px 15px !important;
-    border-radius: 14px;
+  #nf-cockpit-left {
+    inset: var(--nf-top) 0 auto 0;
+    width: auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 10px 14px;
+    overflow: hidden;
   }
 
-  .nf-footer-inner { flex-direction: column; gap: 6px; }
+  .nf-brand-row {
+    flex: 0 0 auto;
+    padding: 0 12px 0 0;
+    border-right: 1px solid rgba(255,255,255,.10);
+  }
+
+  .nf-brand-mark {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .nf-brand-mode,
+  .nf-rail-section:not(.nf-mobile-current),
+  .nf-rail-foot {
+    display: none;
+  }
+
+  .nf-mobile-current {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    border: 0;
+  }
+
+  .nf-case-large { margin: 0; }
+  #nf-case-current { font-size: 20px; }
+  .nf-stage-now { padding: 7px 9px 7px 12px; }
+
+  #nf-cockpit-top {
+    left: 0;
+    right: 0;
+    padding: 0 14px;
+  }
+
+  .nf-top-progress { min-width: 125px; flex-basis: 170px; }
+  .nf-prototype-pill { display: none; }
 }
 
-@media (max-width: 480px) {
-  .nf-mark { width: 36px; height: 36px; flex-basis: 36px; }
-  .nf-brand-title { font-size: 16px; }
-  .nf-brand-subtitle { font-size: 11.5px; }
-  #nf-progress-label { min-width: 70px; }
+@media (max-width: 560px) {
+  .nf-top-progress { display: none; }
+  #nf-top-stage { font-size: 14px; }
+  .nf-brand-name { font-size: 12px; }
+  .nf-stage-now { display: none; }
+
+  .nf-auto-panel {
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+  }
+
   button,
   input[type="button"],
-  input[type="submit"] { width: 100%; }
+  input[type="submit"] {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
+  *,*::before,*::after {
     animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
 
 @media print {
-  #nf-study-shell,
-  #nf-study-footer { display: none !important; }
-  body { background: #fff !important; }
-  .nf-section-card { box-shadow: none !important; }
+  #nf-cockpit-left,
+  #nf-cockpit-top,
+  #nf-cockpit-right {
+    display: none !important;
+  }
+  body {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  .nf-auto-panel { box-shadow: none !important; }
 }
 </style>
-<!-- NF_UI_FACELIFT_STYLE_END -->
+<!-- NF_UI_COCKPIT_STYLE_END -->
 </head>
 <body>
-<!-- NF_UI_FACELIFT_HEADER_BEGIN -->
-<header id="nf-study-shell" aria-label="NeuroFHIR-Review study header">
-  <div class="nf-shell-inner">
-    <div class="nf-shell-top">
-      <div class="nf-brand">
-        <div class="nf-mark" aria-hidden="true">NF</div>
-        <div class="nf-brand-copy">
-          <div class="nf-brand-title">NeuroFHIR-Review</div>
-          <div class="nf-brand-subtitle">Longitudinal neuroimaging evidence · uncertainty · provenance · accountable review</div>
-        </div>
-      </div>
-      <div class="nf-study-badge">Research prototype · 12-case review</div>
-    </div>
-    <div class="nf-progress-wrap" aria-label="Case progress">
-      <div class="nf-progress-track" aria-hidden="true">
-        <div id="nf-progress-fill"></div>
-      </div>
-      <div id="nf-progress-label">Review session</div>
+<!-- NF_UI_COCKPIT_LEFT_BEGIN -->
+<aside id="nf-cockpit-left" data-nf-cockpit="true" aria-label="Study session">
+  <div class="nf-brand-row">
+    <div class="nf-brand-mark" aria-hidden="true">NF</div>
+    <div>
+      <div class="nf-brand-name">NeuroFHIR-Review</div>
+      <div class="nf-brand-mode">Evidence cockpit</div>
     </div>
   </div>
+
+  <section class="nf-rail-section nf-mobile-current">
+    <div>
+      <div class="nf-rail-label">Current case</div>
+      <div class="nf-case-large">
+        <span id="nf-case-current">—</span>
+        <span class="nf-case-total">/ 12</span>
+      </div>
+    </div>
+    <div class="nf-stage-now">
+      <div id="nf-left-stage">Case review</div>
+      <div class="nf-stage-sub">Only the current visible stage is shown.</div>
+    </div>
+  </section>
+
+  <section class="nf-rail-section">
+    <div class="nf-rail-label">Case navigator</div>
+    <div id="nf-case-grid" class="nf-case-grid" aria-label="12-case progress">
+      <span class="nf-case-dot" data-case="1">01</span>
+      <span class="nf-case-dot" data-case="2">02</span>
+      <span class="nf-case-dot" data-case="3">03</span>
+      <span class="nf-case-dot" data-case="4">04</span>
+      <span class="nf-case-dot" data-case="5">05</span>
+      <span class="nf-case-dot" data-case="6">06</span>
+      <span class="nf-case-dot" data-case="7">07</span>
+      <span class="nf-case-dot" data-case="8">08</span>
+      <span class="nf-case-dot" data-case="9">09</span>
+      <span class="nf-case-dot" data-case="10">10</span>
+      <span class="nf-case-dot" data-case="11">11</span>
+      <span class="nf-case-dot" data-case="12">12</span>
+    </div>
+  </section>
+
+  <section class="nf-rail-section">
+    <div class="nf-rail-label">Current screen</div>
+    <div class="nf-stage-now">
+      <div id="nf-left-stage-2">Case review</div>
+      <div class="nf-stage-sub">Use only the information available on this screen.</div>
+    </div>
+  </section>
+
+  <div class="nf-rail-foot">
+    Research prototype<br>
+    Not for patient care or diagnostic use
+  </div>
+</aside>
+<!-- NF_UI_COCKPIT_LEFT_END -->
+
+
+<!-- NF_UI_COCKPIT_TOP_BEGIN -->
+<header id="nf-cockpit-top" data-nf-cockpit="true" aria-label="Current review context">
+  <div class="nf-top-context">
+    <div class="nf-top-eyebrow">Human–AI evidence review</div>
+    <div id="nf-top-stage">Case review</div>
+  </div>
+
+  <div class="nf-top-progress" aria-label="Case progress">
+    <div class="nf-progress-meta">
+      <span id="nf-progress-case">Case — of 12</span>
+      <span id="nf-progress-percent">0%</span>
+    </div>
+    <div class="nf-progress-track" aria-hidden="true">
+      <div id="nf-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="nf-prototype-pill">Research prototype</div>
 </header>
-<!-- NF_UI_FACELIFT_HEADER_END -->
+<!-- NF_UI_COCKPIT_TOP_END -->
+
+
+<!-- NF_UI_COCKPIT_RIGHT_BEGIN -->
+<aside id="nf-cockpit-right" data-nf-cockpit="true" aria-label="Review console">
+  <div class="nf-console-title">Review console</div>
+  <div class="nf-console-subtitle">Read-only session context</div>
+
+  <section class="nf-console-card">
+    <div class="nf-console-card-title">Session</div>
+    <div class="nf-kv">
+      <div class="nf-k">Case</div>
+      <div id="nf-console-case" class="nf-v">— / 12</div>
+    </div>
+    <div class="nf-kv">
+      <div class="nf-k">Screen</div>
+      <div id="nf-console-stage" class="nf-v">Case review</div>
+    </div>
+    <div class="nf-kv">
+      <div class="nf-k">Status</div>
+      <div id="nf-console-status" class="nf-v">In progress</div>
+    </div>
+  </section>
+
+  <section class="nf-console-card">
+    <div class="nf-console-card-title">Visible evidence</div>
+    <div id="nf-visible-evidence">
+      <span class="nf-evidence-chip">Current screen</span>
+    </div>
+  </section>
+
+  <section class="nf-console-card">
+    <div class="nf-console-card-title">Review rule</div>
+    <div class="nf-console-rule">
+      Base each judgment only on information visible at the current stage.
+      The interface does not reveal the hidden study sequence.
+    </div>
+  </section>
+
+  <section class="nf-console-card">
+    <div class="nf-console-card-title">Study safeguards</div>
+    <div class="nf-safeguard">
+      <span class="nf-safeguard-dot"></span>
+      <span>Researcher answer key is not included in this application.</span>
+    </div>
+    <div class="nf-safeguard">
+      <span class="nf-safeguard-dot"></span>
+      <span>Case order and evidence exposure remain controlled by the frozen study logic.</span>
+    </div>
+    <div class="nf-safeguard">
+      <span class="nf-safeguard-dot"></span>
+      <span>Responses are exported at session completion using the study controls.</span>
+    </div>
+  </section>
+</aside>
+<!-- NF_UI_COCKPIT_RIGHT_END -->
 
 <main class="shell">
 <header>
@@ -745,175 +1121,316 @@ function render(){
 fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(e=>{q("#app").innerHTML="<b>Failed to load study data:</b> "+esc(e)})
 </script>
 
-<!-- NF_UI_FACELIFT_FOOTER_BEGIN -->
-<footer id="nf-study-footer">
-  <div class="nf-footer-inner">
-    <div><strong>NeuroFHIR-Review</strong> · formative human–AI research workflow</div>
-    <div>Research prototype · not for patient care or diagnostic use</div>
-  </div>
-</footer>
-<!-- NF_UI_FACELIFT_FOOTER_END -->
-
-<!-- NF_UI_FACELIFT_SCRIPT_BEGIN -->
-<script id="nf-wish-professional-ui-script">
+<!-- NF_UI_COCKPIT_SCRIPT_BEGIN -->
+<script id="nf-evidence-cockpit-script">
 (function () {
   "use strict";
 
-  function textOf(el) {
-    return (el && el.textContent ? el.textContent : "").replace(/\s+/g, " ").trim();
+  var cockpitIds = [
+    "nf-cockpit-left",
+    "nf-cockpit-top",
+    "nf-cockpit-right"
+  ];
+
+  function isVisible(el) {
+    if (!el) return false;
+    if (el.closest("[data-nf-cockpit]")) return false;
+
+    var style = window.getComputedStyle(el);
+    if (
+      style.display === "none" ||
+      style.visibility === "hidden" ||
+      style.opacity === "0"
+    ) return false;
+
+    var r = el.getBoundingClientRect();
+    return (r.width > 0 || r.height > 0);
   }
 
-  function nearestCardCandidate(el) {
-    if (!el) return null;
-    return el.closest(
-      "section, article, fieldset, form, .card, .panel, .section, .content, .step, div"
-    );
+  function visibleStudyText() {
+    var parts = [];
+    document.querySelectorAll(
+      "h1,h2,h3,h4,h5,p,label,legend,button,td,th,li,span,div"
+    ).forEach(function (el) {
+      if (!isVisible(el)) return;
+      if (el.children && el.children.length > 0 && el.tagName === "DIV") return;
+
+      var t = (el.textContent || "").replace(/\s+/g, " ").trim();
+      if (t) parts.push(t);
+    });
+    return parts.join(" | ");
   }
 
-  function decorateSections() {
-    var headings = document.querySelectorAll("h1,h2,h3,h4,[role='heading']");
-    headings.forEach(function (h) {
-      var t = textOf(h).toLowerCase();
-      var card = nearestCardCandidate(h);
+  function findCurrentCase(text) {
+    var patterns = [
+      /case\s+(\d+)\s+of\s+12/i,
+      /case\s+(\d+)\s*\/\s*12/i,
+      /case\s*#?\s*(\d+)/i
+    ];
 
-      if (!card || card.id === "nf-study-shell" || card.id === "nf-study-footer") return;
+    for (var i = 0; i < patterns.length; i++) {
+      var m = text.match(patterns[i]);
+      if (m) {
+        var n = parseInt(m[1], 10);
+        if (n >= 1 && n <= 12) return n;
+      }
+    }
+    return null;
+  }
 
-      var matched = false;
+  function detectStage(text) {
+    var t = text.toLowerCase();
 
-      if (t.includes("case brief") || t === "case") {
-        card.classList.add("nf-section-card", "nf-evidence-card");
-        matched = true;
-      } else if (t.includes("evidence passport") || t.includes("provenance")) {
-        card.classList.add("nf-section-card", "nf-passport-card");
-        matched = true;
-      } else if (t.includes("initial judgment")) {
-        card.classList.add("nf-section-card", "nf-judgment-card");
-        matched = true;
-      } else if (
-        t.includes("ai recommendation") ||
-        t.includes("ai review") ||
-        t.includes("ai evidence")
-      ) {
-        card.classList.add("nf-section-card", "nf-ai-card");
-        matched = true;
-      } else if (t.includes("final action") || t.includes("final decision")) {
-        card.classList.add("nf-section-card", "nf-final-card");
-        matched = true;
-      } else if (
-        t.includes("evidence") ||
-        t.includes("mri") ||
-        t.includes("longitudinal") ||
+    // Most-specific current visible state first.
+    if (
+      t.includes("review complete") ||
+      t.includes("export case responses") ||
+      t.includes("export interaction log")
+    ) return "Review complete";
+
+    if (
+      t.includes("final action") ||
+      t.includes("final disposition") ||
+      t.includes("reason code") ||
+      t.includes("keep initial judgment")
+    ) return "Final disposition";
+
+    if (
+      t.includes("evidence passport") ||
+      t.includes("provenance")
+    ) return "Evidence provenance";
+
+    if (
+      t.includes("ai recommendation") ||
+      t.includes("ai review")
+    ) return "AI evidence review";
+
+    if (t.includes("initial judgment")) return "Initial judgment";
+
+    if (
+      t.includes("mri") ||
+      t.includes("longitudinal") ||
+      t.includes("evidence review")
+    ) return "Evidence review";
+
+    if (t.includes("case brief")) return "Case brief";
+
+    return "Case review";
+  }
+
+  function detectVisibleEvidence(text) {
+    var t = text.toLowerCase();
+    var chips = [];
+
+    if (t.includes("mri") || t.includes("image")) chips.push("MRI");
+    if (t.includes("longitudinal") || t.includes("visit")) chips.push("Longitudinal");
+    if (t.includes("qc") || t.includes("quality")) chips.push("QC");
+    if (t.includes("confidence") || t.includes("uncertainty")) chips.push("Uncertainty");
+    if (t.includes("ai recommendation") || t.includes("ai review")) chips.push("AI recommendation");
+    if (t.includes("provenance") || t.includes("evidence passport")) chips.push("Provenance");
+
+    // Do not imply hidden future evidence.
+    if (!chips.length) chips.push("Current screen");
+    return chips;
+  }
+
+  function updateCaseUI(caseNo) {
+    var display = caseNo ? String(caseNo).padStart(2, "0") : "—";
+    var current = document.getElementById("nf-case-current");
+    var consoleCase = document.getElementById("nf-console-case");
+    var progressCase = document.getElementById("nf-progress-case");
+    var progressPct = document.getElementById("nf-progress-percent");
+    var fill = document.getElementById("nf-progress-fill");
+
+    if (current) current.textContent = display;
+    if (consoleCase) consoleCase.textContent = (caseNo ? caseNo : "—") + " / 12";
+    if (progressCase) progressCase.textContent = "Case " + (caseNo ? caseNo : "—") + " of 12";
+
+    var pct = caseNo ? Math.round((caseNo / 12) * 100) : 0;
+    if (progressPct) progressPct.textContent = pct + "%";
+    if (fill) fill.style.width = pct + "%";
+
+    document.querySelectorAll(".nf-case-dot").forEach(function (dot) {
+      var n = parseInt(dot.getAttribute("data-case"), 10);
+      dot.classList.remove("is-past", "is-current");
+      if (caseNo && n < caseNo) dot.classList.add("is-past");
+      if (caseNo && n === caseNo) dot.classList.add("is-current");
+    });
+  }
+
+  function updateStageUI(stage, text) {
+    [
+      "nf-left-stage",
+      "nf-left-stage-2",
+      "nf-top-stage",
+      "nf-console-stage"
+    ].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = stage;
+    });
+
+    var status = document.getElementById("nf-console-status");
+    if (status) {
+      status.textContent = stage === "Review complete" ? "Complete" : "In progress";
+    }
+
+    var visibleEvidence = document.getElementById("nf-visible-evidence");
+    if (visibleEvidence) {
+      visibleEvidence.innerHTML = "";
+      detectVisibleEvidence(text).forEach(function (label) {
+        var chip = document.createElement("span");
+        chip.className = "nf-evidence-chip";
+        chip.textContent = label;
+        visibleEvidence.appendChild(chip);
+      });
+    }
+  }
+
+  function nearestUsefulContainer(h) {
+    if (!h) return null;
+
+    var candidates = [];
+    var el = h.parentElement;
+
+    while (
+      el &&
+      el !== document.body &&
+      !el.hasAttribute("data-nf-cockpit") &&
+      candidates.length < 5
+    ) {
+      candidates.push(el);
+      el = el.parentElement;
+    }
+
+    // Prefer a container that is substantial but not the entire application.
+    for (var i = 0; i < candidates.length; i++) {
+      var c = candidates[i];
+      var rect = c.getBoundingClientRect();
+      if (rect.width > 240 && rect.height > 80 && rect.height < window.innerHeight * 2.4) {
+        return c;
+      }
+    }
+
+    return h.parentElement;
+  }
+
+  function decoratePanels() {
+    document.querySelectorAll("h1,h2,h3,h4,h5,[role='heading']").forEach(function (h) {
+      if (!isVisible(h)) return;
+
+      var t = (h.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      if (!t) return;
+
+      var panel = nearestUsefulContainer(h);
+      if (!panel || panel.hasAttribute("data-nf-cockpit")) return;
+
+      var kind = null;
+      var label = null;
+
+      if (
         t.includes("review complete")
       ) {
-        card.classList.add("nf-section-card", "nf-evidence-card");
-        matched = true;
+        kind = "nf-panel-complete";
+        label = "Session";
+      } else if (
+        t.includes("final action") ||
+        t.includes("final disposition")
+      ) {
+        kind = "nf-panel-decision";
+        label = "Reviewer disposition";
+      } else if (
+        t.includes("evidence passport") ||
+        t.includes("provenance")
+      ) {
+        kind = "nf-panel-provenance";
+        label = "Evidence provenance";
+      } else if (
+        t.includes("ai recommendation") ||
+        t.includes("ai review")
+      ) {
+        kind = "nf-panel-ai";
+        label = "AI-derived evidence";
+      } else if (
+        t.includes("initial judgment")
+      ) {
+        kind = "nf-panel-decision";
+        label = "Reviewer judgment";
+      } else if (
+        t.includes("mri") ||
+        t.includes("evidence") ||
+        t.includes("longitudinal") ||
+        t.includes("case brief")
+      ) {
+        kind = "nf-panel-evidence";
+        label = "Observed evidence";
       }
 
-      if (matched && !card.querySelector(":scope > .nf-card-eyebrow")) {
-        var eyebrow = document.createElement("div");
-        eyebrow.className = "nf-card-eyebrow";
-        eyebrow.setAttribute("aria-hidden", "true");
+      if (!kind) return;
 
-        if (card.classList.contains("nf-ai-card")) eyebrow.textContent = "AI evidence";
-        else if (card.classList.contains("nf-passport-card")) eyebrow.textContent = "Evidence provenance";
-        else if (card.classList.contains("nf-judgment-card")) eyebrow.textContent = "Reviewer judgment";
-        else if (card.classList.contains("nf-final-card")) eyebrow.textContent = "Final disposition";
-        else eyebrow.textContent = "Case evidence";
+      panel.classList.add("nf-auto-panel", kind);
 
-        card.insertBefore(eyebrow, card.firstChild);
+      if (!panel.querySelector(":scope > .nf-panel-label")) {
+        var tag = document.createElement("div");
+        tag.className = "nf-panel-label";
+        tag.setAttribute("aria-hidden", "true");
+        tag.textContent = label;
+        panel.insertBefore(tag, panel.firstChild);
       }
     });
   }
 
-  function decorateButtons() {
+  function decorateActions() {
     document.querySelectorAll("button,input[type='button'],input[type='submit']").forEach(function (b) {
-      var t = ((b.value || "") + " " + textOf(b)).toLowerCase();
+      if (b.closest("[data-nf-cockpit]")) return;
+      var t = (((b.value || "") + " " + (b.textContent || ""))).toLowerCase();
       if (
         t.includes("back") ||
         t.includes("previous") ||
         t.includes("download") ||
         t.includes("export")
       ) {
-        b.classList.add("nf-secondary-button");
+        b.classList.add("nf-secondary-action");
       }
     });
   }
 
-  function updateProgress() {
-    var bodyText = textOf(document.body);
+  function refresh() {
+    var text = visibleStudyText();
+    var caseNo = findCurrentCase(text);
+    var stage = detectStage(text);
 
-    var patterns = [
-      /case\s+(\d+)\s+of\s+(\d+)/i,
-      /case\s+(\d+)\s*\/\s*(\d+)/i,
-      /(\d+)\s+of\s+(\d+)\s+cases?/i
-    ];
-
-    var match = null;
-    for (var i = 0; i < patterns.length; i++) {
-      match = bodyText.match(patterns[i]);
-      if (match) break;
-    }
-
-    var fill = document.getElementById("nf-progress-fill");
-    var label = document.getElementById("nf-progress-label");
-    if (!fill || !label) return;
-
-    if (match) {
-      var current = Math.max(1, parseInt(match[1], 10));
-      var total = Math.max(current, parseInt(match[2], 10));
-      var pct = Math.min(100, Math.max(0, (current / total) * 100));
-      fill.style.width = pct + "%";
-      label.textContent = "Case " + current + " of " + total;
-    } else if (/review complete/i.test(bodyText)) {
-      fill.style.width = "100%";
-      label.textContent = "Complete";
-    } else {
-      fill.style.width = "0%";
-      label.textContent = "12-case review";
-    }
-  }
-
-  function accessibilityPass() {
-    document.querySelectorAll("button").forEach(function (b) {
-      if (!b.getAttribute("type")) b.setAttribute("type", "button");
-    });
-
-    document.querySelectorAll("textarea").forEach(function (el) {
-      if (!el.getAttribute("spellcheck")) el.setAttribute("spellcheck", "true");
-    });
-  }
-
-  function applyVisualEnhancements() {
-    decorateSections();
-    decorateButtons();
-    updateProgress();
-    accessibilityPass();
+    updateCaseUI(caseNo);
+    updateStageUI(stage, text);
+    decoratePanels();
+    decorateActions();
   }
 
   var queued = false;
-  function scheduleApply() {
+  function scheduleRefresh() {
     if (queued) return;
     queued = true;
     window.requestAnimationFrame(function () {
       queued = false;
-      applyVisualEnhancements();
+      refresh();
     });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", applyVisualEnhancements, { once: true });
+    document.addEventListener("DOMContentLoaded", refresh, { once: true });
   } else {
-    applyVisualEnhancements();
+    refresh();
   }
 
-  var observer = new MutationObserver(scheduleApply);
-  observer.observe(document.documentElement, {
+  var observer = new MutationObserver(scheduleRefresh);
+  observer.observe(document.body, {
     childList: true,
     subtree: true,
-    characterData: true
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["hidden", "style", "class", "aria-hidden"]
   });
 })();
 </script>
-<!-- NF_UI_FACELIFT_SCRIPT_END -->
+<!-- NF_UI_COCKPIT_SCRIPT_END -->
 </body>
 </html>
