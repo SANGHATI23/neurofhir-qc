@@ -1198,6 +1198,8 @@ fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(
   function stageFromText(raw) {
     var t = (raw || "").toLowerCase();
 
+    if (/study setup|participant id|reviewer category/i.test(t)) return "Study setup";
+
     if (
       /review complete|session complete|completion/i.test(t)
     ) return "Review complete";
@@ -1269,6 +1271,9 @@ fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(
     // Only describe evidence that is legitimately available by THIS stage.
     // Do not parse the global step navigator for evidence labels.
     switch (stage) {
+      case "Study setup":
+        return ["No case evidence yet"];
+
       case "Case brief":
         return ["Case context"];
 
@@ -1293,6 +1298,25 @@ fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(
       default:
         return ["Current screen"];
     }
+  }
+
+
+  function normalizeSetupPresentation(stage) {
+    if (stage !== "Study setup") return;
+
+    // P001/P002 are reserved QA IDs. Do not suggest them to real reviewers.
+    // This changes placeholder text only; it never sets a participant value.
+    var candidates = document.querySelectorAll(
+      'input[id*="participant" i], input[name*="participant" i], input[placeholder="P001"]'
+    );
+
+    candidates.forEach(function (input) {
+      if (input.value) return;
+      var ph = (input.getAttribute("placeholder") || "").trim();
+      if (!ph || /^P00[12]$/i.test(ph)) {
+        input.setAttribute("placeholder", "Assigned ID (P003+)");
+      }
+    });
   }
 
   function updateCaseUI(caseNo) {
@@ -1335,7 +1359,8 @@ fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(
     var status = document.getElementById("nf-console-status");
     if (status) {
       status.textContent =
-        stage === "Review complete" ? "Complete" : "In progress";
+        stage === "Review complete" ? "Complete" :
+        stage === "Study setup" ? "Not started" : "In progress";
     }
 
     var visibleEvidence = document.getElementById("nf-visible-evidence");
@@ -1475,6 +1500,7 @@ fetch("participant_cases.json").then(r=>r.json()).then(x=>{D=x;render()}).catch(
 
     updateCaseUI(caseNo);
     updateStageUI(stage);
+    normalizeSetupPresentation(stage);
     decoratePanels();
     decorateActions();
   }
