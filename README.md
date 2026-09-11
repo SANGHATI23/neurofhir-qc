@@ -308,6 +308,8 @@ a public FHIR sandbox
 It has not been clinically validated and is not intended for diagnosis or
 patient-care decisions.
 
+The Human Review view includes an AI Evidence Passport summarizing model/method identity, engineering QC state, AI-derived volume, FHIR status, provenance completeness, and limitations, together with Human-AI reconciliation and direct access to the corresponding FHIR evidence.
+
 The current results should therefore be interpreted as implementation and
 workflow evidence rather than clinical-performance evidence.
 The prototype focuses on one question:
